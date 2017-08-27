@@ -4,7 +4,7 @@
 ## HW1: 3D reconstruction from silhouette method
 
 ### 1. 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), Each set has 8 silhouette images. 
-Computer-Vision/新增資料夾/3d.png
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/%E6%96%B0%E5%A2%9E%E8%B3%87%E6%96%99%E5%A4%BE/3d.png)
 ### 2. “white” pixels indicate “foreground”, and “black” pixels mean  “background”. 
 ### 3. All images are taken with the same intrinsic parameter, and their extrinsic parameters are corresponding to the number in the TXT file. For example, 001.bmp, 002.bmp, 003.bmp et. al. have the extrinsic parameters shown in “camera parameter.txt”
 ### 4.The workspace in world coordinate is around (-50,-50,-10) to (50,50,90). The voxel is a cube with 1 x 1 x 1 in dimensions. So, there are 1.0 million candidate voxels should be processed. Please project all voxels in each silhouette image, and check their existence. (hint: if a voxel is projected on the background of one image of them, it should be removed. The remained voxels indicate the final shape). 
