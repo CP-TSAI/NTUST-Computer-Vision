@@ -1,6 +1,6 @@
 # Computer-Vision
-- Programming work for "2017 Computer Vision and Application" at NTUST
-- C++/OpenCV on Visual Studio 2015
+- Programming project for the course "Computer Vision and Application" at NTUST, 2017
+- Implemented by C++/OpenCV/Eigen on Visual Studio 2015
 
 
 
