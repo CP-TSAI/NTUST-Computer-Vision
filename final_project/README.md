@@ -8,7 +8,7 @@
 
 ## Results:
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/3dd.png" width="30%" height="30%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/original.png" width="30%" height="30%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/3dd.png" width="30%" height="30%"> 
 
 
 
