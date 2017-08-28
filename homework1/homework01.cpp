@@ -480,9 +480,4 @@ int main()
 	return 0;
 }
 
-/*imshow("Gray image", myBMP_008);
-waitKey(0);*/
-
-/*cout << "Width : " << myBMP_001.cols << endl;
-cout << "Height: " << myBMP_001.rows << endl;*/
 
