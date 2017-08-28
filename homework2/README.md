@@ -12,4 +12,5 @@
 - Finally convert it into front view image. 
 
 ## Results:
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/隨班附讀-蔡金博.JPG" width="50%" height="50%"> 
 
