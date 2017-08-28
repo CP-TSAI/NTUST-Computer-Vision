@@ -1,6 +1,6 @@
 # HW1: 3D reconstruction from silhouette method
 
-## 1. 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), Each set has 8 silhouette images.
+### 1. 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), Each set has 8 silhouette images.
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/001.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/002.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/003.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/004.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/005.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/006.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/007.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/008.bmp" width="25%" height="25%"> 
 
 ## 2. “white” pixels indicate “foreground”, and “black” pixels mean “background”.
