@@ -12,5 +12,6 @@ calculate the intrinsic parameter of the camera.
 
 - there is NO need to read this image or detect features in your program. Using an image tool (ex. photoshop) for picking out the pixel coordinate is recommended. 
 
-
+## Results:
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/camera_relative.png" width="40%" height="40%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/CalibrationIMG 修正v4.bmp" width="40%" height="40%"> 
 
