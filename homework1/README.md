@@ -12,5 +12,5 @@
 - hint: if a voxel is projected on the background of one image of them, it should be removed. The remained voxels indicate the final shape.
 
 ## Results:
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/recon.png" width="50%" height="50%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/recon.png" width="25%" height="25%"> 
 
