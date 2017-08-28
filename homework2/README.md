@@ -1,7 +1,7 @@
 ## Using homography mapping to inpaint an image, and convert it into front view 
 - Calculate homography mapping matrixes between two images, and inpainting the obstacle region of the image, then convert it into a front-view image.
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/1.JPG" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/2.JPG" width="25%" height="25%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/1.JPG" width="45%" height="45%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/2.JPG" width="25%" height="25%"> 
 
 - Please manually pickup at least 4 corresponding coordinates on both images by using any Image Viewer Tool.
 
