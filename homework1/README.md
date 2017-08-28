@@ -2,13 +2,13 @@
 
 ## 1. 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), Each set has 8 silhouette images.
 ![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/001.bmp)
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/002.bmp
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/003.bmp
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/004.bmp
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/005.bmp
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/006.bmp
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/007.bmp
-https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/008.bmp
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/002.bmp)
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/003.bmp)
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/004.bmp)
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/005.bmp)
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/006.bmp)
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/007.bmp)
+![CP-TSAI](https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/008.bmp)
 ## 2. “white” pixels indicate “foreground”, and “black” pixels mean “background”.
 
 ## 3. All images are taken with the same intrinsic parameter, and their extrinsic parameters are corresponding to the number in the TXT file. For example, 001.bmp, 002.bmp, 003.bmp et. al. have the extrinsic parameters shown in “camera parameter.txt”
