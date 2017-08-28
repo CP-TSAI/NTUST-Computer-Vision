@@ -5,3 +5,11 @@
 - A fundamental matrix is given for assisting you to find the corresponding features in left and right images. 
 
 - Once corresponding features are determined, please calculate their 3D, then store them as a .xyz file.
+
+## Results:
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/3dd.png" width="40%" height="40%"> 
+
+
+
+
