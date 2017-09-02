@@ -2,11 +2,11 @@
 
 - There are series of images, scanning the statue of a person.
 
-- Write a program for importing both image sequences, and analyzing the both synchronized images. 
+- Built a program for importing both image sequences, and analyzing the synchronized images.
 
-- A fundamental matrix is given for assisting you to find the corresponding features in left and right images. 
+- A fundamental matrix is calculated to assist finding the corresponding features in left and right images.
 
-- Once corresponding features are determined, please calculate their 3D, then store them as a .xyz file.
+- Once corresponding features are determined, calculate their 3D, then store them as a .xyz file.
 
 ## Results:
 
