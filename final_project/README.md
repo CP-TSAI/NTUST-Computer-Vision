@@ -1,6 +1,6 @@
 ## Reconstruct 3D from stereoscopic images 
 
-- There are series of image, scanning the statue　of a person.
+- There are series of images, scanning the statue of a person.
 
 - Write a program for importing both image sequences, and analyzing the both synchronized images. 
 
