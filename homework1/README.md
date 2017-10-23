@@ -1,6 +1,7 @@
 ## HW1: 3D reconstruction from silhouette method
 
-- There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.(Take the “Eagle” for example.)
+- There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
+(Take the “Eagle” for example.)
 
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/pic.jpg" width="75%" height="75%"> 
 
