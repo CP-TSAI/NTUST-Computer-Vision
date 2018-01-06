@@ -1,6 +1,7 @@
 ## HW1: 3D reconstruction from silhouette method
 
 #### ABSTRACT
+- In this project, we use the concept of "Voxel-based Extraction" to recontruct the 3D object from 2D images.
 - There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
 (Take the “Eagle” for example.)
 
