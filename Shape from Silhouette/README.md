@@ -11,10 +11,16 @@
 
 #### Method
 
-- First we assume the 3D object is located in the workspace: 
+- Firstly, we assume the 3D object is located in the workspace: 
 **-50 < x < 50**; 
 **-50 < y < 50**; 
 **-10 < z < 90**;
+
+- Secondly, we can use the properties of the *binary image*: **pixel 0 is black, pixel 256 is white**. 
+
+- Third, we project each point in the 3D workspace to 2D images, if a point can be projected in the white region, then it's the target point. 
+
+- Finally, output all the target point set, and print them out, we can have the 3D model!
 
 - There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
 (Take the “Eagle” for example.)
