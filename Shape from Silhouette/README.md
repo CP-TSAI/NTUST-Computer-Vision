@@ -1,10 +1,12 @@
-## HW1: 3D reconstruction from silhouette method
+## HW1: 3D Reconstruction from Silhouette Method
 
 #### ABSTRACT
-- In this project, we use the concept of "Voxel-based Extraction" to recontruct the 3D object from 2D images.
+- In this project, we use the concept of **"Voxel-based Extraction"** to recontruct the 3D object from 2D images.
 - 8 images for each object are given, as the following shows. (It is the silhouette of an eagle.)
 
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/eagle8.png" width="75%" height="75%"> 
+
+- The **Extrinsic Matrix** (i.e The relative position between camera and object) and **Intrinsic Matrix** (i.e: The parameters of the camera) is given.
 
 - There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
 (Take the “Eagle” for example.)
