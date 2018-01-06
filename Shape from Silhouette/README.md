@@ -3,6 +3,9 @@
 #### ABSTRACT
 - In this project, we use the concept of "Voxel-based Extraction" to recontruct the 3D object from 2D images.
 - 8 images for each object are given, as the following shows. (It is the silhouette of an eagle.)
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/eagle8.jpg" width="75%" height="75%"> 
+
 - There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
 (Take the “Eagle” for example.)
 
