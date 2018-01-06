@@ -6,7 +6,15 @@
 
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/eagle8.png" width="75%" height="75%"> 
 
-- The **Extrinsic Matrix** (i.e The relative position between camera and object) and **Intrinsic Matrix** (i.e: The parameters of the camera) is given.
+- The **Extrinsic Matrix** (i.e The relative position between camera and object) and **Intrinsic Matrix** (i.e: The parameters of the camera) is given, therefore we get the projection matrix from 3D object to 2D image.
+
+
+#### Method
+
+- First we assume the 3D object is located in the workspace: 
+**-50 < x < 50**; 
+**-50 < y < 50**; 
+**-10 < z < 90**;
 
 - There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
 (Take the “Eagle” for example.)
