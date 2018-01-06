@@ -18,26 +18,11 @@
 
 - Secondly, we can use the properties of the *binary image*: **pixel 0 is black, pixel 256 is white**. 
 
-- Third, we project each point in the 3D workspace to 2D images, if a point can be projected in the white region, then it's the target point. 
+- Third, **we project each point in the 3D workspace to 2D images, if a point can be projected in the white region for all 8 images, then it's the target point**. 
 
 - Finally, output all the target point set, and print them out, we can have the 3D model!
 
-- There are 4 data sets (“Eagle”, “Bunny”, “Teapot”, and “Venus”), each set has 8 silhouette images.
-(Take the “Eagle” for example.)
-
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/pic.jpg" width="75%" height="75%"> 
-
-<!--
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/001.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/002.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/003.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/004.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/005.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/006.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/007.bmp" width="25%" height="25%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/008.bmp" width="25%" height="25%"> 
--->
-
-- Calculated the camera parameter (Intrinsic Parameter & Extrinsic Parameter)
-- Projected test points inside the workspace, if the projected point is inside the white space, then keep it. 
-- After 8 runs, the remained points can be the 3D space reconstruction.
-
-
-
-
-## Results:
+- The result is shown as followings.
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/recon.png" width="25%" height="25%"> 
+
 
