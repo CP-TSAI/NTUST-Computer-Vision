@@ -29,7 +29,7 @@ x = PX,  P = k[R|t]
 
 - With the 3 Homography Matrix, we can then calculate the **OMEGA parameter** by the equation below. 
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/h_function.png" width="41%" height="41%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/h_function.png" width="80%" height="80%">
 
 - The **relation between OMEGA and Intrinsic Matrix K** is described below. 
 
@@ -39,19 +39,15 @@ w = ( K * K^T )^ (-1)
 
 - K can be noted as:
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/k.png" width="41%" height="41%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/k.png" width="25%" height="25%">
 
-[A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/)
+- With K, we then use the method provided by Zhang in [A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/) to calculate the Extrinsic Matrix [R|t]. 
 
-- Please manually select 3 squares, as well as known shapes, (please show me in another figure), then determine their homography from a unit square. Based on Zhang’s method (or IAC), please 
-calculate the intrinsic parameter of the camera.
+- Extend the [R|t] matrix to  4x4 matrix, inverse it then we can get the relative position between the world frame to the camera. 
 
-- Finally, try to find out the camera position relative to World coordinate. 
-
-- there is NO need to read this image or detect features in your program. Using an image tool (ex. photoshop) for picking out the pixel coordinate is recommended. 
 
 ## Results:
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/camera_relative.png" width="40%" height="40%"> 
 
-- The coordination of camera is (74.8452, 71.3981, 52.4693)
+- The coordination of camera is **(74.8452, 71.3981, 52.4693)**.
 
