@@ -39,7 +39,7 @@ w = ( K * K^T )^ (-1)
 
 - K can be noted as:
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/k.png" width="25%" height="25%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/k.png" width="18%" height="18%">
 
 - With K, we then use the method provided by Zhang in [A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/) to calculate the Extrinsic Matrix [R|t]. 
 
