@@ -33,7 +33,7 @@
 
 - Once we have homography matrix H, you can compute the projected coordinates of any point p(x,y) such as:
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/lambda.png" width="35%" height="35%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/lambda.png" width="25%" height="25%"> 
 
 
 #### Method:
@@ -48,5 +48,5 @@
 
 - The pipeline of the project is shown as followings. 
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial.png" width="35%" height="35%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial.png" width="65%" height="65%"> 
 
