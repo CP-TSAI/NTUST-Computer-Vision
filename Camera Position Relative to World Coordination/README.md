@@ -1,12 +1,16 @@
 ## Determine Camera Position Relative to World Coordinate 
 
-- In this project, we are going to calculate the camera position from ONE given image and a known structure.
 
-- During the process, we need to calculate the Intrinsic and Extrinsic matrix of the camera by ourselves.
+#### ABSTRACT
+- In this project, we are going to **calculate the camera position from ONE given image and a known structure**.
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/CalibrationIMG.bmp" width="40%" height="40%"> 
+- During the process, we need to calculate the **Intrinsic and Extrinsic matrix of the camera by ourselves**.
 
-- In this image, there is one cube with 50 cm in length, width and height. The world coordinate is on a corner and its x, y and z axes are on the edges as shown in the figure.
+- The image is shown as followings: There is a cube with 50 cm in length, width and height. The world coordinate is on a corner and its x, y and z axes are on the edges.
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/Calibration.png" width="40%" height="40%"> 
+
+
 
 - Please manually select 3 squares, as well as known shapes, (please show me in another figure), then determine their homography from a unit square. Based on Zhang’s method (or IAC), please 
 calculate the intrinsic parameter of the camera.
