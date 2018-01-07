@@ -13,14 +13,23 @@
 
 #### METHOD
 
-- To get the camera position relative to world coordination, we need to use the camera model. * **x** * means the 2D point on images, and *X* m
+- To get the camera position relative to world coordination, we need to use the **camera model** as shown below.
 
 ```math # camera model
 x = PX
 P = k[R|t]
 ```
 
-... 12342
+- *x* means the 2D point on images, and *X* means the 3D point in spaces. With **projection matrix** *P*, we can project the 3D point on the images. 
+
+- The projection matrix P is built by both the **Intrinsic Matrix K** and **Extrinsic Matrix [R|t]**.
+
+- Using the **Camera Calibration Method** mentioned in ** *Multi View Geometry, by Richard Hartley* **, we can first calculate 3 different **Homography Matrix** from a unit rectangle to 3 different rectangles A, B, C as shown below. 
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/CalibrationIMG 修正v4.bmp" width="41%" height="41%">
+
+
+
 
 [A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/)
 
@@ -32,7 +41,7 @@ calculate the intrinsic parameter of the camera.
 - there is NO need to read this image or detect features in your program. Using an image tool (ex. photoshop) for picking out the pixel coordinate is recommended. 
 
 ## Results:
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/camera_relative.png" width="40%" height="40%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/CalibrationIMG 修正v4.bmp" width="41%" height="41%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/camera_relative.png" width="40%" height="40%"> 
 
 - The coordination of camera is (74.8452, 71.3981, 52.4693)
 
