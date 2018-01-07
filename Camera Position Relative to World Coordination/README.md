@@ -13,10 +13,11 @@
 
 #### METHOD
 
-- To get the camera position relative to world coordination, we need to use the camera model.  
+- To get the camera position relative to world coordination, we need to use the camera model. * **x** * means the 2D point on images, and *X* m
 
-```math #yourmathlabel
-a + b = c
+```math # camera model
+x = PX
+P = k[R|t]
 ```
 
 ... 12342
