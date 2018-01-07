@@ -5,7 +5,7 @@
 
 - Two images are given, as the following shows. A man is standing in fornt of the camera, blocked the partial view of the blackboard. 
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/1.JPG" width="45%" height="45%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/2.JPG" width="45%" height="45%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/1.JPG" width="35%" height="35%"> <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/2.JPG" width="35%" height="35%"> 
 
 - What we need to do is to calculate **homography mapping matrix between two images**, and get the image information for the blocked region from another image, then convert it into a front-view image.
 
@@ -48,5 +48,5 @@
 
 - The pipeline of the project is shown as followings. 
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial.png" width="65%" height="65%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial.png" width="85%" height="85%"> 
 
