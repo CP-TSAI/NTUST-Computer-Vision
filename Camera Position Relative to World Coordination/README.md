@@ -31,11 +31,15 @@ x = PX,  P = k[R|t]
 
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/h_function.png" width="41%" height="41%">
 
-- The relation between OMEGA and Intrinsic Matrix K is described below. 
+- The **relation between OMEGA and Intrinsic Matrix K** is described below. 
 
 ```math # camera model
-w = (K*K^{T})^{-1}
+w = ( K * K^T )^ (-1)
 ```
+
+- K can be noted as:
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/k.png" width="41%" height="41%">
 
 [A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/)
 
