@@ -13,6 +13,8 @@
 
 - In this section, we would talk the way to obtain the Homography Matrix. 
 
+- If we have **at least 4 corresponding points**, a homography can dominate the transformation between two images, so **we don't have to determine the Intrinsic and Extrinsic matrix for the images**. 
+
 - The following shows the transformation between two rectangles.
 
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/homography.png" width="45%" height="45%"> 
@@ -31,15 +33,20 @@
 
 - Once we have homography matrix H, you can compute the projected coordinates of any point p(x,y) such as:
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/lambda.png" width="45%" height="45%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/lambda.png" width="35%" height="35%"> 
 
 
 #### Method:
 
+- To remove the obstacle (people) out of the image, we would first calculate the Homography Matrix between the two images. 
 
+- Secondly, we would fill the region being blocked by the pixel information from another image. 
 
-- Finally convert it into front view image. 
+- Finally, we would project the cleared image to a front view images. 
 
-## Results:
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/隨班附讀-蔡金博.jpg" width="50%" height="50%"> 
+#### Results:
+
+- The pipeline of the project is shown as followings. 
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial.png" width="35%" height="35%"> 
 
