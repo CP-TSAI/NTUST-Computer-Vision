@@ -19,7 +19,7 @@
 a + b = c
 ```
 
-..* 12342
+... 12342
 
 [A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/)
 
