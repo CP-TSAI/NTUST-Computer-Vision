@@ -19,6 +19,10 @@
 a + b = c
 ```
 
+..* 12342
+
+[A flexible new technique for camera calibration](http://ieeexplore.ieee.org/document/888718/)
+
 - Please manually select 3 squares, as well as known shapes, (please show me in another figure), then determine their homography from a unit square. Based on Zhang’s method (or IAC), please 
 calculate the intrinsic parameter of the camera.
 
