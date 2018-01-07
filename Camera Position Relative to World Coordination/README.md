@@ -11,6 +11,13 @@
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/Calibration.png" width="40%" height="40%"> 
 
 
+#### METHOD
+
+- To get the camera position relative to world coordination, we need to use the camera model.  
+
+```math #yourmathlabel
+a + b = c
+```
 
 - Please manually select 3 squares, as well as known shapes, (please show me in another figure), then determine their homography from a unit square. Based on Zhang’s method (or IAC), please 
 calculate the intrinsic parameter of the camera.
