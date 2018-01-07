@@ -48,5 +48,5 @@
 
 - The pipeline of the project is shown as followings. 
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial.png" width="85%" height="85%"> 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/serial__.png" width="85%" height="85%"> 
 
