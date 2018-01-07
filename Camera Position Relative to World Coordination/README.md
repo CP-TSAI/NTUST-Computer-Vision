@@ -1,6 +1,9 @@
 ## Determine Camera Position Relative to World Coordinate 
 
-- Determine the camera position from ONE given image and a known structure. You may need to calculate the intrinsic and extrinsic parameters of the camera. 
+- In this project, we are going to calculate the camera position from ONE given image and a known structure.
+
+- During the process, we need to calculate the Intrinsic and Extrinsic matrix of the camera by ourselves.
+
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/CalibrationIMG.bmp" width="40%" height="40%"> 
 
 - In this image, there is one cube with 50 cm in length, width and height. The world coordinate is on a corner and its x, y and z axes are on the edges as shown in the figure.
