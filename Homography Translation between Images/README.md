@@ -11,17 +11,32 @@
 
 #### Introduction of Homography
 
+- In this section, we would talk the way to obtain the Homography Matrix. 
+
 - The following shows the transformation between two rectangles.
 
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/homography.png" width="45%" height="45%"> 
 
-- To compute the Homography Matrix H, we can first pick 4 corresponding image points. 
+- To compute the Homography Matrix H, we can first pick **4 corresponding image points**: (x1, y1), (x1', y1'); (x2, y2), (x2', y2'); (x3, y3), (x3', y3'); (x4, y4), (x4', y4')
 
-- Please manually pickup at least 4 corresponding coordinates on both images by using any Image Viewer Tool.
+- We can get a 9x2 matrix for each data set:
 
-- Store these correspondences, then compute their homography matrix. (Hint: all points on this projection-screen are co-planar.)
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/pi.png" width="45%" height="45%"> 
 
-- Please manually define the pixel-region of the obstacle, as a mask. Then draw the regions by the pixels from other view according to homography transformation. 
+- With 4 data sets, we can stack them into a matrix P to compute **PH = 0** write a 8x9 matrix:
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/PH.png" width="45%" height="45%"> 
+
+- While adding an extra constraint **|H| = 1** to avoid the obvious solution of H being all zeros. It is easy to use **SVD = (U)(S)(V^t) and select the last singular vector of V as the solution to H**.
+
+- Once we have homography matrix H, you can compute the projected coordinates of any point p(x,y) such as:
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/lambda.png" width="45%" height="45%"> 
+
+
+#### Method:
+
+
 
 - Finally convert it into front view image. 
 
