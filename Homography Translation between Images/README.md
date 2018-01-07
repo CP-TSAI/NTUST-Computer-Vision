@@ -11,7 +11,11 @@
 
 #### Introduction of Homography
 
+- The following shows the transformation between two rectangles.
 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/homography.png" width="45%" height="45%"> 
+
+- To compute the Homography Matrix H, we can first pick 4 corresponding image points. 
 
 - Please manually pickup at least 4 corresponding coordinates on both images by using any Image Viewer Tool.
 
