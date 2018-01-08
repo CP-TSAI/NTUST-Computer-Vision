@@ -11,6 +11,8 @@
 
 - There are series of images, scanning the statue of a person.
 
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/whole.png" width="25%" height="25%">
+
 - Built a program for importing both image sequences, and analyzing the synchronized images.
 
 - A fundamental matrix is calculated to assist finding the corresponding features in left and right images.
