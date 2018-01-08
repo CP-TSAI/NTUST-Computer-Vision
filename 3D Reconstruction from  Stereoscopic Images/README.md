@@ -18,9 +18,9 @@
 
 - Second, use the fundamental matrix to multiply a point on the left images, the we can get the Epipoline on the right images. 
 
-- Check the point on the Epipoline, if the pixel value is larger than zero, then we get the corresponding point. The pipeline is shown below. 
+- Check the point on the Epipoline, if the pixel value is larger than zero (i.e: white points), then we get the corresponding point. The pipeline is shown below. 
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/Fundamental_Trans.png" width="25%" height="25%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/Fundamental_Trans.png" width="40%" height="40%">
 
 - With the projection matrix and the corresponding datasets, we can use the **3D Estimation Direct Trianglation Method** mentioned in *Multiple View Geometry in Computer Vision, by Richard Hartley* to calculate their 3D points, then store them as a .xyz file.
 
