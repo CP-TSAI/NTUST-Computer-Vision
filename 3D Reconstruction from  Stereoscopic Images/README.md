@@ -27,7 +27,7 @@
 #### Results:
 
 - The 3D point is shown below.
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/Reconstruct.png" width="35%" height="35%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/Reconstruct.png" width="55%" height="55%">
 
 
 
