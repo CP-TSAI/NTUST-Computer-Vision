@@ -11,7 +11,7 @@
 
 - There are series of images, scanning the statue of a person.
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/whole.png" width="25%" height="25%">
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/whole.png" width="35%" height="35%">
 
 - Built a program for importing both image sequences, and analyzing the synchronized images.
 
