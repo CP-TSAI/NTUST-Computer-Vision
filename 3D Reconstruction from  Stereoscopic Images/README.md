@@ -3,13 +3,13 @@
 
 #### ABSTRACT
 
-<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/whole.png" width="35%" height="35%">
-
-- In this project, we want to reconstruct 3D Object from images that is made by laser scaner from left and right view, as the above shows.
+- In this project, we want to **reconstruct 3D Object from Stereoscopic Images that is made by laser scanner**, as the following shows.
 
 - The Intrinsic and Extrinsic Matrix of the camera are given.
 
-- The Fundamental Matrix between two corresponding images are also given.
+- The Fundamental Matrix between two corresponding images is also given.
+
+<img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/whole.png" width="35%" height="35%">
 
 
 #### METHOD
