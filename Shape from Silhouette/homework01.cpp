@@ -161,18 +161,21 @@ Point_on_2D get_projection_and_normalized_result(vector<vector<double>>& project
 	return pt_2d;
 }
 
-void check_validity_of_2d_pt(cv::Mat& img, Point_on_2D& pt_2d, bool& checking)
+void check_validity_of_2d_pt(cv::Mat& img, Point_on_2D& pt_2d, bool& is_valid)
 {
 	if (0 <= pt_2d.x_2d && pt_2d.x_2d < 800 && 
 		0 <= pt_2d.y_2d && pt_2d.y_2d < 600) // 0 < x < 800 ; 0 < y <600
 	{
 		int pixel_value = (int)img.at<uchar>(pt_2d.y_2d, pt_2d.x_2d);
-		
-		if (pixel_value == 0) { checking = 0; } // GET-OUT!
-
+		if (pixel_value == 0)
+		{ 
+			is_valid = 0;
+		}
 	}
 	else
-		checking = 0;
+	{
+		is_valid = 0;
+	}
 }
 
 int main()
@@ -195,24 +198,22 @@ int main()
 
 
 	// read images
-	cv::Mat myBMP_001 = cv::imread("../imgs/" + object_name + "/001.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 001 file
-	cv::Mat myBMP_002 = cv::imread("../imgs/" + object_name + "/002.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 002 file
-	cv::Mat myBMP_003 = cv::imread("../imgs/" + object_name + "/003.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 003 file
-	cv::Mat myBMP_004 = cv::imread("../imgs/" + object_name + "/004.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 004 file
-	cv::Mat myBMP_005 = cv::imread("../imgs/" + object_name + "/005.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 005 file
-	cv::Mat myBMP_006 = cv::imread("../imgs/" + object_name + "/006.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 006 file
-	cv::Mat myBMP_007 = cv::imread("../imgs/" + object_name + "/007.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 007 file
-	cv::Mat myBMP_008 = cv::imread("../imgs/" + object_name + "/008.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 008 file
-	if (!myBMP_001.data || !myBMP_002.data || !myBMP_003.data || !myBMP_004.data || !myBMP_005.data || !myBMP_006.data || !myBMP_007.data || !myBMP_008.data)
+	cv::Mat myBMP_001 = cv::imread("../imgs/" + object_name + "/001.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_002 = cv::imread("../imgs/" + object_name + "/002.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_003 = cv::imread("../imgs/" + object_name + "/003.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_004 = cv::imread("../imgs/" + object_name + "/004.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_005 = cv::imread("../imgs/" + object_name + "/005.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_006 = cv::imread("../imgs/" + object_name + "/006.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_007 = cv::imread("../imgs/" + object_name + "/007.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_008 = cv::imread("../imgs/" + object_name + "/008.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	if (!myBMP_001.data || !myBMP_002.data || !myBMP_003.data || !myBMP_004.data || 
+	    !myBMP_005.data || !myBMP_006.data || !myBMP_007.data || !myBMP_008.data)
 	{
 		cout << "Could not open or find the image" << std::endl;
 		return -1;
 	}
 
 
-	
-	
-	bool checking;
 
 	vector<Point_on_3D> vec_p_on_3d;
 	for (double x_workspace = -50; x_workspace <= 50; x_workspace++)
@@ -221,7 +222,7 @@ int main()
 		{
 			for (double z_workspace = -10; z_workspace <= 90; z_workspace++)
 			{
-				checking = 1; // initialize the bool value
+				bool is_valid = 1; // initialize the bool value
 
 				// project the 3D workspace on to 2D coordination ...
 				Point_on_3D p_on_3d_temp;
@@ -229,63 +230,62 @@ int main()
 				p_on_3d_temp.y_3d = y_workspace;
 				p_on_3d_temp.z_3d = z_workspace;
 
-
 				// ***** check 001.bmp *****
 				Point_on_2D p_on_2d_temp = get_projection_and_normalized_result(projections[0], p_on_3d_temp);
-				check_validity_of_2d_pt(myBMP_001, p_on_2d_temp, checking);
+				check_validity_of_2d_pt(myBMP_001, p_on_2d_temp, is_valid);
 
 
 				// ***** check 002.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[1], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_002, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_002, p_on_2d_temp, is_valid);
 				}
 
 				// ***** check 003.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[2], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_003, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_003, p_on_2d_temp, is_valid);
 				}
 
 				// ***** check 004.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[3], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_004, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_004, p_on_2d_temp, is_valid);
 				}
 
 				// ***** check 005.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[4], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_005, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_005, p_on_2d_temp, is_valid);
 				}
 
 				// ***** check 006.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[5], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_006, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_006, p_on_2d_temp, is_valid);
 				}
 
 				// ***** check 007.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[6], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_007, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_007, p_on_2d_temp, is_valid);
 				}
 
 				// ***** check 008.bmp *****
-				if (checking)
+				if (is_valid)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[7], p_on_3d_temp);
-					check_validity_of_2d_pt(myBMP_008, p_on_2d_temp, checking);
+					check_validity_of_2d_pt(myBMP_008, p_on_2d_temp, is_valid);
 				}
 
 				// ALL PASS, you're the right point!
-				if (checking)
+				if (is_valid)
 				{
 					vec_p_on_3d.push_back(p_on_3d_temp);
 				}
