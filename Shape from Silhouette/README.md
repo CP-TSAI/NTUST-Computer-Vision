@@ -26,3 +26,21 @@
 <img src="https://github.com/CP-TSAI/Computer-Vision/raw/master/cv_pic/recon.png" width="25%" height="25%"> 
 
 
+
+#### How to execute
+
+- cd to `Shape from Silhouette`
+
+- mkdir build
+
+- cd build
+
+- cmake ..
+
+- make
+
+- ./homework01
+
+- meshlab 3D_point.xyz (<---- check the result)
+
+

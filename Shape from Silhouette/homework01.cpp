@@ -1,27 +1,9 @@
-// homework01.cpp : Defines the entry point for the console application.
-//
-
-#include "stdafx.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <windows.h> 
-#include "opencv/opencv2/opencv.hpp"
 #include <vector>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <cctype>
-#include <conio.h> 
-
-#ifdef ___WIN_X64_LIB___
-#pragma comment(lib, "../../lib/x64/opencv_world320.lib")
-#endif
-
-#ifdef ___WIN_X86_LIB___
-#pragma comment(lib, "../../lib/x86/opencv_world320.lib")
-#endif
-
-using namespace cv;
+#include "opencv2/opencv.hpp"
 using namespace std;
 
 
@@ -243,14 +225,14 @@ int main()
 
 
 	// ********* read image *********
-	cv::Mat myBMP_001 = cv::imread("001.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 001 file
-	cv::Mat myBMP_002 = cv::imread("002.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 002 file
-	cv::Mat myBMP_003 = cv::imread("003.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 003 file
-	cv::Mat myBMP_004 = cv::imread("004.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 004 file
-	cv::Mat myBMP_005 = cv::imread("005.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 005 file
-	cv::Mat myBMP_006 = cv::imread("006.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 006 file
-	cv::Mat myBMP_007 = cv::imread("007.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 007 file
-	cv::Mat myBMP_008 = cv::imread("008.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 008 file
+	cv::Mat myBMP_001 = cv::imread("../imgs/Eagle/001.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 001 file
+	cv::Mat myBMP_002 = cv::imread("../imgs/Eagle/002.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 002 file
+	cv::Mat myBMP_003 = cv::imread("../imgs/Eagle/003.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 003 file
+	cv::Mat myBMP_004 = cv::imread("../imgs/Eagle/004.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 004 file
+	cv::Mat myBMP_005 = cv::imread("../imgs/Eagle/005.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 005 file
+	cv::Mat myBMP_006 = cv::imread("../imgs/Eagle/006.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 006 file
+	cv::Mat myBMP_007 = cv::imread("../imgs/Eagle/007.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 007 file
+	cv::Mat myBMP_008 = cv::imread("../imgs/Eagle/008.bmp", CV_LOAD_IMAGE_GRAYSCALE);  // Read the 008 file
 	if (!myBMP_001.data || !myBMP_002.data || !myBMP_003.data || !myBMP_004.data || !myBMP_005.data || !myBMP_006.data || !myBMP_007.data || !myBMP_008.data)
 	{
 		cout << "Could not open or find the image" << std::endl;
