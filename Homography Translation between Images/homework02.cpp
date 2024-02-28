@@ -39,7 +39,7 @@ Eigen::Matrix3d get_homography_matrix(
 	Coordination& p1_1, Coordination& p1_2, Coordination& p1_3, Coordination& p1_4,
 	Coordination& p2_1, Coordination& p2_2, Coordination& p2_3, Coordination& p2_4)
 {
-	// calculate the Homography matrix
+	// calculate the Homography matrix (from p2 to p1)
 	Eigen::MatrixXd HomoMat(8, 8);
 	HomoMat <<
 		p2_1.getx(), p2_1.gety(), 1, 0, 0, 0, -p1_1.getx()*p2_1.getx(), -p1_1.getx()*p2_1.gety(),
@@ -89,6 +89,7 @@ int main()
 	Coordination p2_3(1893, 1679);  // point on 2.jpg => 3
 	Coordination p2_4(477, 1755);  // point on 2.jpg => 4
 
+	// H is from p2 to p1
 	Eigen::Matrix3d H = get_homography_matrix(p1_1, p1_2, p1_3, p1_4, p2_1, p2_2, p2_3, p2_4);
 	
 
@@ -102,14 +103,6 @@ int main()
 	Eigen::MatrixXd obstacle24(3, 1);
 	obstacle24 << 1313, 1703, 1;
 
-	Eigen::MatrixXd obstacle21_projected = H * obstacle21;
-	obstacle21_projected = normalized_3x1(obstacle21_projected);
-	Eigen::MatrixXd obstacle22_projected = H * obstacle22;
-	obstacle22_projected = normalized_3x1(obstacle22_projected);
-	Eigen::MatrixXd obstacle23_projected = H * obstacle23;
-	obstacle23_projected = normalized_3x1(obstacle23_projected);
-	Eigen::MatrixXd obstacle24_projected = H * obstacle24;
-	obstacle24_projected = normalized_3x1(obstacle24_projected);
 	
 	cv::Mat myJPG_no_Obstacle = myJPG_002;  // Read the 002 file
 	
@@ -136,32 +129,10 @@ int main()
 	Coordination p_Final_1(0, 0);  
 	Coordination p_Final_2(3000, 0);  
 	Coordination p_Final_3(3000, 2000);  
-	Coordination p_Final_4(0, 2000);  
+	Coordination p_Final_4(0, 2000);
 
-	// calculate the Homography matrix
-	Eigen::MatrixXd HomoMat2(8, 8);
-	HomoMat2 <<
-		p2_1.getx(), p2_1.gety(), 1, 0, 0, 0, -p_Final_1.getx()*p2_1.getx(), -p_Final_1.getx()*p2_1.gety(),
-		0, 0, 0, p2_1.getx(), p2_1.gety(), 1, -p_Final_1.gety()*p2_1.getx(), -p_Final_1.gety()*p2_1.gety(),
-		p2_2.getx(), p2_2.gety(), 1, 0, 0, 0, -p_Final_2.getx()*p2_2.getx(), -p_Final_2.getx()*p2_2.gety(),
-		0, 0, 0, p2_2.getx(), p2_2.gety(), 1, -p_Final_2.gety()*p2_2.getx(), -p_Final_2.gety()*p2_2.gety(),
-		p2_3.getx(), p2_3.gety(), 1, 0, 0, 0, -p_Final_3.getx()*p2_3.getx(), -p_Final_3.getx()*p2_3.gety(),
-		0, 0, 0, p2_3.getx(), p2_3.gety(), 1, -p_Final_3.gety()*p2_3.getx(), -p_Final_3.gety()*p2_3.gety(),
-		p2_4.getx(), p2_4.gety(), 1, 0, 0, 0, -p_Final_4.getx()*p2_4.getx(), -p_Final_4.getx()*p2_4.gety(),
-		0, 0, 0, p2_4.getx(), p2_4.gety(), 1, -p_Final_4.gety()*p2_4.getx(), -p_Final_4.gety()*p2_4.gety();
-
-	Eigen::MatrixXd proj_point2(8, 1);
-	proj_point2 << 0, 0, 3000, 0, 3000, 2000, 0, 2000;
-
-	Eigen::MatrixXd h_coefficient2(8, 1);
-	h_coefficient2 = HomoMat2.inverse()*proj_point2;
-
-	// build the 3x3 Homography matrix
-	Eigen::Matrix3d H2;
-	H2 <<
-		h_coefficient2(0, 0), h_coefficient2(1, 0), h_coefficient2(2, 0),
-		h_coefficient2(3, 0), h_coefficient2(4, 0), h_coefficient2(5, 0),
-		h_coefficient2(6, 0), h_coefficient2(7, 0), 1;
+	// H2 is from p2 to p_Final
+	Eigen::Matrix3d H2 = get_homography_matrix(p_Final_1, p_Final_2, p_Final_3, p_Final_4, p2_1, p2_2, p2_3, p2_4);
 
 
 	// build a blank image as the following spec ...
