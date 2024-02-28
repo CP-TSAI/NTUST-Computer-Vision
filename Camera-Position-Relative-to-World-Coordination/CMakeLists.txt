@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Homework01)
+project(Homework03)
 
 # Find OpenCV package
 find_package(OpenCV REQUIRED)
@@ -8,10 +8,10 @@ find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 # Add executable
-add_executable(homework01 homework01.cpp)
+add_executable(homework03 homework03.cpp)
 
 # Include directories for Eigen
-target_include_directories(homework01 PRIVATE ${EIGEN3_INCLUDE_DIRS})
+target_include_directories(homework03 PRIVATE ${EIGEN3_INCLUDE_DIRS})
 
 # Link OpenCV
-target_link_libraries(homework01 PRIVATE ${OpenCV_LIBS})
+target_link_libraries(homework03 PRIVATE ${OpenCV_LIBS})
