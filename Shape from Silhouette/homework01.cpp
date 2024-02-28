@@ -161,6 +161,20 @@ Point_on_2D get_projection_and_normalized_result(vector<vector<double>>& project
 	return pt_2d;
 }
 
+void check_validity_of_2d_pt(cv::Mat& img, Point_on_2D& pt_2d, bool& checking)
+{
+	if (0 <= pt_2d.x_2d && pt_2d.x_2d < 800 && 
+		0 <= pt_2d.y_2d && pt_2d.y_2d < 600) // 0 < x < 800 ; 0 < y <600
+	{
+		int pixel_value = (int)img.at<uchar>(pt_2d.y_2d, pt_2d.x_2d);
+		
+		if (pixel_value == 0) { checking = 0; } // GET-OUT!
+
+	}
+	else
+		checking = 0;
+}
+
 int main()
 {
 	// (1) Bunny, (2) Eagle, (3) Teapot, (4) Venus
@@ -199,7 +213,6 @@ int main()
 	
 	
 	bool checking;
-	int pixel_value;
 
 	vector<Point_on_3D> vec_p_on_3d;
 	for (double x_workspace = -50; x_workspace <= 50; x_workspace++)
@@ -219,114 +232,56 @@ int main()
 
 				// ***** check 001.bmp *****
 				Point_on_2D p_on_2d_temp = get_projection_and_normalized_result(projections[0], p_on_3d_temp);
-
-				if (0 <= p_on_2d_temp.x_2d && p_on_2d_temp.x_2d < 800 && 
-					0 <= p_on_2d_temp.y_2d && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-				{
-					pixel_value = (int)myBMP_001.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-					
-					if (pixel_value == 0) { checking = 0; } // GET-OUT!
-	
-				}
-				else
-					checking = 0;
+				check_validity_of_2d_pt(myBMP_001, p_on_2d_temp, checking);
 
 
 				// ***** check 002.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[1], p_on_3d_temp);
-
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{ 
-						pixel_value = (int)myBMP_002.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_002, p_on_2d_temp, checking);
 				}
 
 				// ***** check 003.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[2], p_on_3d_temp);
-
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{
-						pixel_value = (int)myBMP_003.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_003, p_on_2d_temp, checking);
 				}
 
 				// ***** check 004.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[3], p_on_3d_temp);
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{
-						pixel_value = (int)myBMP_004.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_004, p_on_2d_temp, checking);
 				}
 
 				// ***** check 005.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[4], p_on_3d_temp);
-
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{
-						pixel_value = (int)myBMP_005.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_005, p_on_2d_temp, checking);
 				}
 
 				// ***** check 006.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[5], p_on_3d_temp);
-
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{
-						pixel_value = (int)myBMP_006.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_006, p_on_2d_temp, checking);
 				}
 
 				// ***** check 007.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[6], p_on_3d_temp);
-
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{
-						pixel_value = (int)myBMP_007.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_007, p_on_2d_temp, checking);
 				}
 
 				// ***** check 008.bmp *****
 				if (checking)
 				{
 					p_on_2d_temp = get_projection_and_normalized_result(projections[7], p_on_3d_temp);
-
-					if (p_on_2d_temp.x_2d > 0 && p_on_2d_temp.x_2d < 800 && p_on_2d_temp.y_2d > 0 && p_on_2d_temp.y_2d < 600) // 0 < x < 800 ; 0 < y <600
-					{
-						pixel_value = (int)myBMP_008.at<uchar>(p_on_2d_temp.y_2d, p_on_2d_temp.x_2d);
-						if (pixel_value == 0) { checking = 0; } // GET-OUT!
-					}
-					else
-						checking = 0;
+					check_validity_of_2d_pt(myBMP_008, p_on_2d_temp, checking);
 				}
 
 				// ALL PASS, you're the right point!
