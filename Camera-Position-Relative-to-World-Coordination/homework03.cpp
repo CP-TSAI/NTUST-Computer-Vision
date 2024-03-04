@@ -19,7 +19,7 @@ void normalized_3x1(Eigen::MatrixXd& mat)
 
 int main()
 {
-	// coordination on image
+	// Pick the coordinate on the image manually
 	Eigen::MatrixXd A1(3, 1);	A1 << 217, 135, 1;
 	Eigen::MatrixXd A2(3, 1);	A2 << 248, 311, 1;
 	Eigen::MatrixXd A3(3, 1);	A3 << 370, 262, 1;
@@ -33,7 +33,7 @@ int main()
 	Eigen::MatrixXd C3(3, 1);	C3 << 409, 404, 1;
 	Eigen::MatrixXd C4(3, 1);	C4 << 508, 334, 1;
 
-	// calculate the Homography matrix
+	// Define the unit square
 	Eigen::MatrixXd unit1(3, 1);	unit1 << 0, 0, 1;
 	Eigen::MatrixXd unit2(3, 1);	unit2 << 0, 30, 1;
 	Eigen::MatrixXd unit3(3, 1);	unit3 << 30, 30, 1;
@@ -45,7 +45,7 @@ int main()
 	Eigen::MatrixXd unit4_c(3, 1);	unit4_c << 0, 30, 1;
 
 
-
+	// calculate the Homography matrix
 	Eigen::MatrixXd A_unit_to_square(8, 9);
 	A_unit_to_square <<
 		0, 0, 0, -1 * A1(2, 0)*unit1(0, 0), -1 * A1(2, 0)*unit1(1, 0), -1 * A1(2, 0)*unit1(2, 0), A1(1, 0)*unit1(0, 0), A1(1, 0)*unit1(1, 0), A1(1, 0)*unit1(2, 0),
@@ -106,7 +106,7 @@ int main()
 		   V_C(3, 8), V_C(4, 8), V_C(5, 8),
 		   V_C(6, 8), V_C(7, 8), V_C(8, 8);
 	
-	// normalize
+	// normalize the homography matrix
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			H_A(i, j) = H_A(i, j) / V_A(8, 8);
@@ -121,6 +121,7 @@ int main()
 	//cout << "pp1 = \n " << pp1 << endl;
 
 
+	// Get the column vector from the homography matrix
 	Eigen::MatrixXd H_A_1(3, 1);
 	H_A_1 << H_A(0, 0), H_A(1, 0), H_A(2, 0);
 	Eigen::MatrixXd H_A_2(3, 1);
@@ -144,7 +145,7 @@ int main()
 
 
 
-	
+	// Calculate the omega parameter
 	Eigen::MatrixXd H_matrix(6, 6);
 	H_matrix <<
 		H_A_1(0, 0)*H_A_2(0, 0), H_A_1(0, 0)*H_A_2(1, 0) + H_A_1(1, 0)*H_A_2(0, 0), H_A_1(0, 0)*H_A_2(2, 0) + H_A_1(2, 0)*H_A_2(0, 0), H_A_1(1, 0)*H_A_2(1, 0), H_A_1(1, 0)*H_A_2(2, 0) + H_A_1(2, 0)*H_A_2(1, 0), H_A_1(2, 0)*H_A_2(2, 0),
@@ -156,25 +157,30 @@ int main()
 
 	Eigen::JacobiSVD<Eigen::MatrixXd> svd_H_matrix(H_matrix, Eigen::ComputeFullV | Eigen::ComputeFullU);
 	Eigen::MatrixXd V_H_matrix = svd_H_matrix.matrixV();
+	// std::cout << "V_H_matrix: \n" << V_H_matrix << std::endl;
 
 	Eigen::MatrixXd omega(3, 3);
 	omega << V_H_matrix(0, 5), V_H_matrix(1, 5), V_H_matrix(2, 5),
 			 V_H_matrix(1, 5), V_H_matrix(3, 5), V_H_matrix(4, 5),
 			 V_H_matrix(2, 5), V_H_matrix(4, 5), V_H_matrix(5, 5);
-
 	//cout << "omega = \n" << omega << endl << endl;
 
 	Eigen::MatrixXd omega_inv(3, 3);
 	omega_inv = omega.inverse();
 	//cout << "omega_inv = \n" << omega_inv << endl << endl;
 
-	// normalize
+
+
+	// normalize omega_inv
 	double normalizer = omega_inv(2, 2);
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++)
 			omega_inv(i,j) = omega_inv(i,j) / normalizer;
 	//cout << "after normalized, omega_inv = \n " << omega_inv << endl;
 
+
+
+	// Calculate K with the omega matrix
 	Eigen::MatrixXd K(3, 3);
 	double c = omega_inv(0, 2);
 	double e = omega_inv(1, 2);
@@ -251,14 +257,19 @@ int main()
 		rc_1(1), rc_2(1), rc_3(1), t_c(1, 0),
 		rc_1(2), rc_2(2), rc_3(2), t_c(2, 0),
 		0, 0, 0, 1;
+	std::cout << "Rt_c_extend = \n " << Rt_c_extend << std::endl;
 
+	
+
+
+	// Get the camera coordinate (relative to world)
+	// Note: if you do (-R.transpose * t), you'll also get the same result
 	Eigen::MatrixXd Rt_c_extend_inverse(4, 4);
 	Rt_c_extend_inverse = Rt_c_extend.inverse();
-
 	//cout << "Rt_c_extend_inverse = \n " << Rt_c_extend_inverse << endl;
 
 
-	char filename[] = "../coordination_of_camera.txt";
+	char filename[] = "output-coordinate-of-camera.txt";
 	fstream fp;
 	fp.open(filename, ios::out);
 	if (!fp) {
@@ -267,6 +278,5 @@ int main()
 	fp << "the coordination of camera is" << endl << Rt_c_extend_inverse(0, 3) << endl << Rt_c_extend_inverse(1, 3) << endl << Rt_c_extend_inverse(2, 3);
 	fp.close();
 
-					
 	return 0;
 }
