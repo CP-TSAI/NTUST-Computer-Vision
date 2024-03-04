@@ -34,7 +34,7 @@ x = PX,  P = k[R|t]
 - The **relation between OMEGA and Intrinsic Matrix K** is described below. 
 
 ```math # camera model
-w = (K*K^T)^(-1)
+w = inverse(K*K^T)
 ```
 
 - K can be noted as:
