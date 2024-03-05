@@ -1,31 +1,21 @@
-// #include "stdafx.h"
-// #include <stdlib.h>
-// #include <stdio.h>
-// #include <windows.h> 
 // #include "opencv/opencv2/opencv.hpp"
 #include <vector>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <cctype>
-// #include <conio.h> 
 #include <Eigen/Dense>  
 #include <math.h>  
 #include <chrono>
+#include <iostream>
+#include "opencv2/opencv.hpp"
 
 #define PI 3.14159265
 
-// #ifdef ___WIN_X64_LIB___
-// #pragma comment(lib, "../../lib/x64/opencv_world320.lib")
-// #endif
-
-// #ifdef ___WIN_X86_LIB___
-// #pragma comment(lib, "../../lib/x86/opencv_world320.lib")
-// #endif
 
 // using namespace cv;
 // using namespace Eigen;
-// using namespace std;
+using namespace std;
 
 // describe the coordination on an image
 class Coordination_3x1
@@ -45,7 +35,7 @@ public:
 };
 
 // normalize the 3x1 matrix
-MatrixXd normalized_3x1(MatrixXd& mat)
+Eigen::MatrixXd normalized_3x1(Eigen::MatrixXd& mat)
 {
 	mat(0, 0) = mat(0, 0) / mat(2, 0);
 	mat(1, 0) = mat(1, 0) / mat(2, 0);
@@ -56,212 +46,212 @@ MatrixXd normalized_3x1(MatrixXd& mat)
 
 int main()
 {
-	// //auto start_time = std::chrono::high_resolution_clock::now();
+	//auto start_time = std::chrono::high_resolution_clock::now();
 
-	// /************************ read image  /************************/
-	// cv::Mat myJPG_001 = cv::imread("DSC_1365.JPG");  // Read the 001 file
-	// cv::Mat myJPG_002 = cv::imread("DSC_1370.JPG");  // Read the 002 file
-	// if (!myJPG_001.data || !myJPG_002.data){
-	// 	cout << "COULD NOT OPEN or find the image" << std::endl;
-	// 	return -1;
-	// }
+	/************************ read image  /************************/
+	cv::Mat myJPG_001 = cv::imread("../DSC_1365.JPG");  // Read the 001 file
+	cv::Mat myJPG_002 = cv::imread("../DSC_1370.JPG");  // Read the 002 file
+	if (!myJPG_001.data || !myJPG_002.data){
+		cout << "COULD NOT OPEN or find the image" << std::endl;
+		return -1;
+	}
 
-	// /******************* calculate the Fundamental Matrix *******************/
-	// // point on 001.jpg
-	// MatrixXd p1(3, 1);	p1 << 570, 917, 1;
-	// MatrixXd p2(3, 1);	p2 << 594, 727, 1;
-	// MatrixXd p3(3, 1);	p3 << 781, 776, 1;
-	// MatrixXd p4(3, 1);	p4 << 1490, 846, 1;
-	// MatrixXd p5(3, 1);	p5 << 1492, 848, 1;
-	// MatrixXd p6(3, 1);	p6 << 1521, 581, 1;
-	// MatrixXd p7(3, 1);	p7 << 1730, 474, 1;
-	// MatrixXd p8(3, 1);	p8 << 2377, 1041, 1;
-	// MatrixXd p9(3, 1);	p9 << 686, 858, 1;
-	// MatrixXd p10(3, 1);	p10 << 651, 750, 1;
+	/******************* Calculate the Fundamental Matrix *******************/
+	// point on 001.jpg
+	Eigen::MatrixXd p1(3, 1);	p1 << 570, 917, 1;
+	Eigen::MatrixXd p2(3, 1);	p2 << 594, 727, 1;
+	Eigen::MatrixXd p3(3, 1);	p3 << 781, 776, 1;
+	Eigen::MatrixXd p4(3, 1);	p4 << 1490, 846, 1;
+	Eigen::MatrixXd p5(3, 1);	p5 << 1492, 848, 1;
+	Eigen::MatrixXd p6(3, 1);	p6 << 1521, 581, 1;
+	Eigen::MatrixXd p7(3, 1);	p7 << 1730, 474, 1;
+	Eigen::MatrixXd p8(3, 1);	p8 << 2377, 1041, 1;
+	Eigen::MatrixXd p9(3, 1);	p9 << 686, 858, 1;
+	Eigen::MatrixXd p10(3, 1);	p10 << 651, 750, 1;
 
-	// // point on 002.jpg
-	// MatrixXd pp1(3, 1);	pp1 << 792, 996, 1;
-	// MatrixXd pp2(3, 1);	pp2 << 872, 818, 1;
-	// MatrixXd pp3(3, 1);	pp3 << 1426, 829, 1;
-	// MatrixXd pp4(3, 1);	pp4 << 1503, 878, 1;
-	// MatrixXd pp5(3, 1);	pp5 << 681, 907, 1;
-	// MatrixXd pp6(3, 1);	pp6 << 2175, 550, 1;
-	// MatrixXd pp7(3, 1);	pp7 << 1797, 452, 1;
-	// MatrixXd pp8(3, 1);	pp8 << 1846, 987, 1;
-	// MatrixXd pp9(3, 1);	pp9 << 1347, 910, 1;
-	// MatrixXd pp10(3, 1);pp10 << 939, 833, 1;
-
-
-	// MatrixXd A(8, 8);
-	// A <<
-	// 	pp1(0, 0) * p1(0, 0), pp1(0, 0) * p1(1, 0), pp1(0, 0), p1(0, 0) * pp1(1, 0), p1(1, 0) * pp1(1, 0), pp1(1, 0), p1(0, 0), p1(1, 0),
-	// 	pp2(0, 0) * p2(0, 0), pp2(0, 0) * p2(1, 0), pp2(0, 0), p2(0, 0) * pp2(1, 0), p2(1, 0) * pp2(1, 0), pp2(1, 0), p2(0, 0), p2(1, 0),
-	// 	pp3(0, 0) * p3(0, 0), pp3(0, 0) * p3(1, 0), pp3(0, 0), p3(0, 0) * pp3(1, 0), p3(1, 0) * pp3(1, 0), pp3(1, 0), p3(0, 0), p3(1, 0),
-	// 	pp4(0, 0) * p4(0, 0), pp4(0, 0) * p4(1, 0), pp4(0, 0), p4(0, 0) * pp4(1, 0), p4(1, 0) * pp4(1, 0), pp4(1, 0), p4(0, 0), p4(1, 0),
-	// 	pp5(0, 0) * p5(0, 0), pp5(0, 0) * p5(1, 0), pp5(0, 0), p5(0, 0) * pp5(1, 0), p5(1, 0) * pp5(1, 0), pp5(1, 0), p5(0, 0), p5(1, 0),
-	// 	pp6(0, 0) * p6(0, 0), pp6(0, 0) * p6(1, 0), pp6(0, 0), p6(0, 0) * pp6(1, 0), p6(1, 0) * pp6(1, 0), pp6(1, 0), p6(0, 0), p6(1, 0),
-	// 	pp7(0, 0) * p7(0, 0), pp7(0, 0) * p7(1, 0), pp7(0, 0), p7(0, 0) * pp7(1, 0), p7(1, 0) * pp7(1, 0), pp7(1, 0), p7(0, 0), p7(1, 0),
-	// 	pp8(0, 0) * p8(0, 0), pp8(0, 0) * p8(1, 0), pp8(0, 0), p8(0, 0) * pp8(1, 0), p8(1, 0) * pp8(1, 0), pp8(1, 0), p8(0, 0), p8(1, 0);
+	// point on 002.jpg
+	Eigen::MatrixXd pp1(3, 1);	pp1 << 792, 996, 1;
+	Eigen::MatrixXd pp2(3, 1);	pp2 << 872, 818, 1;
+	Eigen::MatrixXd pp3(3, 1);	pp3 << 1426, 829, 1;
+	Eigen::MatrixXd pp4(3, 1);	pp4 << 1503, 878, 1;
+	Eigen::MatrixXd pp5(3, 1);	pp5 << 681, 907, 1;
+	Eigen::MatrixXd pp6(3, 1);	pp6 << 2175, 550, 1;
+	Eigen::MatrixXd pp7(3, 1);	pp7 << 1797, 452, 1;
+	Eigen::MatrixXd pp8(3, 1);	pp8 << 1846, 987, 1;
+	Eigen::MatrixXd pp9(3, 1);	pp9 << 1347, 910, 1;
+	Eigen::MatrixXd pp10(3, 1);pp10 << 939, 833, 1;
 
 
-	// MatrixXd minus1(8, 1);
-	// minus1 << -1, -1, -1, -1, -1, -1, -1, -1;
+	Eigen::MatrixXd A(8, 8);
+	A <<
+		pp1(0, 0) * p1(0, 0), pp1(0, 0) * p1(1, 0), pp1(0, 0), p1(0, 0) * pp1(1, 0), p1(1, 0) * pp1(1, 0), pp1(1, 0), p1(0, 0), p1(1, 0),
+		pp2(0, 0) * p2(0, 0), pp2(0, 0) * p2(1, 0), pp2(0, 0), p2(0, 0) * pp2(1, 0), p2(1, 0) * pp2(1, 0), pp2(1, 0), p2(0, 0), p2(1, 0),
+		pp3(0, 0) * p3(0, 0), pp3(0, 0) * p3(1, 0), pp3(0, 0), p3(0, 0) * pp3(1, 0), p3(1, 0) * pp3(1, 0), pp3(1, 0), p3(0, 0), p3(1, 0),
+		pp4(0, 0) * p4(0, 0), pp4(0, 0) * p4(1, 0), pp4(0, 0), p4(0, 0) * pp4(1, 0), p4(1, 0) * pp4(1, 0), pp4(1, 0), p4(0, 0), p4(1, 0),
+		pp5(0, 0) * p5(0, 0), pp5(0, 0) * p5(1, 0), pp5(0, 0), p5(0, 0) * pp5(1, 0), p5(1, 0) * pp5(1, 0), pp5(1, 0), p5(0, 0), p5(1, 0),
+		pp6(0, 0) * p6(0, 0), pp6(0, 0) * p6(1, 0), pp6(0, 0), p6(0, 0) * pp6(1, 0), p6(1, 0) * pp6(1, 0), pp6(1, 0), p6(0, 0), p6(1, 0),
+		pp7(0, 0) * p7(0, 0), pp7(0, 0) * p7(1, 0), pp7(0, 0), p7(0, 0) * pp7(1, 0), p7(1, 0) * pp7(1, 0), pp7(1, 0), p7(0, 0), p7(1, 0),
+		pp8(0, 0) * p8(0, 0), pp8(0, 0) * p8(1, 0), pp8(0, 0), p8(0, 0) * pp8(1, 0), p8(1, 0) * pp8(1, 0), pp8(1, 0), p8(0, 0), p8(1, 0);
 
-	// // build the 3 x 3 Fundamental matrix
-	// MatrixXd F(8, 1);
-	// F = A.inverse() * minus1;
-	// Matrix3d Fundamental_matrix;
-	// Fundamental_matrix <<
-	// 	F(0, 0), F(1, 0), F(2, 0),
-	// 	F(3, 0), F(4, 0), F(5, 0),
-	// 	F(6, 0), F(7, 0),		1;
-	// //cout << "Fundamental matrix ... = \n" << Fundamental_matrix << endl;
 
-	// // using SVD to make the rank of Fundamental_matrix to be 2
-	// JacobiSVD<MatrixXd> svd(Fundamental_matrix, ComputeFullV | ComputeFullU);
-	// MatrixXd U = svd.matrixU();
-	// MatrixXd S = svd.singularValues().asDiagonal();
-	// MatrixXd V_T = svd.matrixV().transpose();
-	// S(2, 2) = 0; // enforcing singularity
+	Eigen::MatrixXd minus1(8, 1);
+	minus1 << -1, -1, -1, -1, -1, -1, -1, -1;
 
-	// // the final answer of FUNDAMENTAL MATRIX
-	// MatrixXd Fundamental_Matrix_SVD = U * S * V_T;
+	// build the 3 x 3 Fundamental matrix
+	Eigen::MatrixXd F(8, 1);
+	F = A.inverse() * minus1;
+	Eigen::Matrix3d Fundamental_matrix;
+	Fundamental_matrix <<
+		F(0, 0), F(1, 0), F(2, 0),
+		F(3, 0), F(4, 0), F(5, 0),
+		F(6, 0), F(7, 0),		1;
+	std::cout << "Fundamental matrix ... = \n" << Fundamental_matrix << std::endl;
 
-	// cout << "Fundamental_Matrix_SVD ... = \n" << Fundamental_Matrix_SVD << endl;
+	// using SVD to make the rank of Fundamental_matrix to be 2
+	Eigen::JacobiSVD<Eigen::MatrixXd> svd(Fundamental_matrix, Eigen::ComputeFullV | Eigen::ComputeFullU);
+	Eigen::MatrixXd U = svd.matrixU();
+	Eigen::MatrixXd S = svd.singularValues().asDiagonal();
+	Eigen::MatrixXd V_T = svd.matrixV().transpose();
+	S(2, 2) = 0; // enforcing singularity
+
+	// the final answer of FUNDAMENTAL MATRIX
+	Eigen::MatrixXd Fundamental_Matrix_SVD = U * S * V_T;
+
+	std::cout << "Fundamental_Matrix_SVD ... = \n" << Fundamental_Matrix_SVD << std::endl;
 
 	// /**************** calculate the epipoline & epipole ****************/
 
-	// MatrixXd epipoline_1(3, 1); // p1 -> epipoline_1 (on img2)
-	// epipoline_1 = Fundamental_matrix * p1;
-	// /*cout << "epipoline_1 = \n" << epipoline_1 << endl;
-	// MatrixXd check1 = epipoline_1.transpose() * pp1;
-	// cout << "check1 = \n" << check1 << endl;*/
+	Eigen::MatrixXd epipoline_1(3, 1); // p1 -> epipoline_1 (on img2)
+	epipoline_1 = Fundamental_matrix * p1;
+	// std::cout << "epipoline_1 = \n" << epipoline_1 << std::endl;
+	// Eigen::MatrixXd check1 = epipoline_1.transpose() * pp1;
+	// std::cout << "check1 = \n" << check1 << std::endl;
 
-	// MatrixXd epipoline_2(3, 1); // p2 -> epipoline_2 (on img2)
-	// epipoline_2 = Fundamental_matrix * p2;
-	// /*cout << "epipoline_2 = \n" << epipoline_2 << endl;
+	Eigen::MatrixXd epipoline_2(3, 1); // p2 -> epipoline_2 (on img2)
+	epipoline_2 = Fundamental_matrix * p2;
+	// std::coutcout << "epipoline_2 = \n" << epipoline_2 << std::coutendl;
 	// MatrixXd check2 = epipoline_2.transpose() * pp2;
-	// cout << "check2 = \n" << check2 << endl;*/
+	// std::coutcout << "check2 = \n" << check2 << std::coutendl;
 
-	// MatrixXd epipoline_3(3, 1);	// p3 -> epipoline_3 (on img2)
-	// epipoline_3 = Fundamental_matrix * p3;
-	// /*cout << "epipoline_3 = \n" << epipoline_3 << endl;
+	Eigen::MatrixXd epipoline_3(3, 1);	// p3 -> epipoline_3 (on img2)
+	epipoline_3 = Fundamental_matrix * p3;
+	// cout << "epipoline_3 = \n" << epipoline_3 << endl;
 	// MatrixXd check3 = epipoline_3.transpose() * pp3;
-	// cout << "check3 = \n" << check3 << endl;*/
+	// cout << "check3 = \n" << check3 << endl;
 
-	// MatrixXd epipoline_4(3, 1);	// p4 -> epipoline_4 (on img2)
-	// epipoline_4 = Fundamental_matrix * p4;
-	// /*cout << "epipoline_4 = \n" << epipoline_4 << endl;
+	Eigen::MatrixXd epipoline_4(3, 1);	// p4 -> epipoline_4 (on img2)
+	epipoline_4 = Fundamental_matrix * p4;
+	// cout << "epipoline_4 = \n" << epipoline_4 << endl;
 	// MatrixXd check4 = epipoline_4.transpose() * pp4;
-	// cout << "check4 = \n" << check4 << endl;*/
+	// cout << "check4 = \n" << check4 << endl;
 
-	// MatrixXd epipoline_5(3, 1);	// p5 -> epipoline_5 (on img2)
-	// epipoline_5 = Fundamental_matrix * p5;
-	// /*cout << "epipoline_5 = \n" << epipoline_5 << endl;
+	Eigen::MatrixXd epipoline_5(3, 1);	// p5 -> epipoline_5 (on img2)
+	epipoline_5 = Fundamental_matrix * p5;
+	// cout << "epipoline_5 = \n" << epipoline_5 << endl;
 	// MatrixXd check5 = epipoline_5.transpose() * pp5;
-	// cout << "check5 = \n" << check5 << endl;*/
+	// cout << "check5 = \n" << check5 << endl;
 
-	// MatrixXd epipoline_6(3, 1);	// p6 -> epipoline_6 (on img2)
-	// epipoline_6 = Fundamental_matrix * p6;
-	// /*cout << "epipoline_6 = \n" << epipoline_6 << endl;
+	Eigen::MatrixXd epipoline_6(3, 1);	// p6 -> epipoline_6 (on img2)
+	epipoline_6 = Fundamental_matrix * p6;
+	// cout << "epipoline_6 = \n" << epipoline_6 << endl;
 	// MatrixXd check6 = epipoline_6.transpose() * pp6;
-	// cout << "check6 = \n" << check6 << endl;*/
+	// cout << "check6 = \n" << check6 << endl;
 
-	// MatrixXd epipoline_7(3, 1);	// p7 -> epipoline_7 (on img2)
-	// epipoline_7 = Fundamental_matrix * p7;
-	// /*cout << "epipoline_7 = \n" << epipoline_7 << endl;
+	Eigen::MatrixXd epipoline_7(3, 1);	// p7 -> epipoline_7 (on img2)
+	epipoline_7 = Fundamental_matrix * p7;
+	// cout << "epipoline_7 = \n" << epipoline_7 << endl;
 	// MatrixXd check7 = epipoline_7.transpose() * pp7;
-	// cout << "check7 = \n" << check7 << endl;*/
+	// cout << "check7 = \n" << check7 << endl;
 
-	// MatrixXd epipoline_8(3, 1);	// p8 -> epipoline_8 (on img2)
-	// epipoline_8 = Fundamental_matrix * p8;
-	// /*cout << "epipoline_8 = \n" << epipoline_8 << endl;
+	Eigen::MatrixXd epipoline_8(3, 1);	// p8 -> epipoline_8 (on img2)
+	epipoline_8 = Fundamental_matrix * p8;
+	// cout << "epipoline_8 = \n" << epipoline_8 << endl;
 	// MatrixXd check8 = epipoline_8.transpose() * pp8;
-	// cout << "check8 = \n" << check8 << endl;*/
+	// cout << "check8 = \n" << check8 << endl;
 
 	
-	// MatrixXd epipole(3, 1); // the intersection point of epipoline_1 & epipoline_2
-	// // doing the cross product to get the intersection point (i.e : epipole)
-	// epipole(0, 0) = epipoline_1(1, 0) * epipoline_2(2, 0) - epipoline_1(2, 0) * epipoline_2(1, 0);
-	// epipole(1, 0) = epipoline_1(2, 0) * epipoline_2(0, 0) - epipoline_1(0, 0) * epipoline_2(2, 0);
-	// epipole(2, 0) = epipoline_1(0, 0) * epipoline_2(1, 0) - epipoline_1(1, 0) * epipoline_2(0, 0);
-	// epipole = normalized_3x1(epipole);
-	// //cout << "after normalized, epipole = \n" << epipole << endl << endl;
+	Eigen::MatrixXd epipole(3, 1); // the intersection point of epipoline_1 & epipoline_2
+	// doing the cross product to get the intersection point (i.e : epipole)
+	epipole(0, 0) = epipoline_1(1, 0) * epipoline_2(2, 0) - epipoline_1(2, 0) * epipoline_2(1, 0);
+	epipole(1, 0) = epipoline_1(2, 0) * epipoline_2(0, 0) - epipoline_1(0, 0) * epipoline_2(2, 0);
+	epipole(2, 0) = epipoline_1(0, 0) * epipoline_2(1, 0) - epipoline_1(1, 0) * epipoline_2(0, 0);
+	epipole = normalized_3x1(epipole);
+	std::cout << "after normalized, epipole = \n" << epipole << std::endl << endl;
 
-	// /*MatrixXd if_online1 = epipoline_1.transpose() * epipole;
+	// Eigen::MatrixXd if_online1 = epipoline_1.transpose() * epipole;
 	// cout << "if_online1 = \n" << if_online1 << endl;
-	// MatrixXd if_online2 = epipoline_2.transpose() * epipole;
+	// Eigen::MatrixXd if_online2 = epipoline_2.transpose() * epipole;
 	// cout << "if_online2 = \n" << if_online2 << endl;
-	// MatrixXd if_online3 = epipoline_3.transpose() * epipole;
+	// Eigen::MatrixXd if_online3 = epipoline_3.transpose() * epipole;
 	// cout << "if_online3 = \n" << if_online3 << endl;
-	// MatrixXd if_online4 = epipoline_4.transpose() * epipole;
+	// Eigen::MatrixXd if_online4 = epipoline_4.transpose() * epipole;
 	// cout << "if_online4 = \n" << if_online4 << endl;
-	// MatrixXd if_online5 = epipoline_5.transpose() * epipole;
+	// Eigen::MatrixXd if_online5 = epipoline_5.transpose() * epipole;
 	// cout << "if_online5 = \n" << if_online5 << endl;
-	// MatrixXd if_online6 = epipoline_6.transpose() * epipole;
+	// Eigen::MatrixXd if_online6 = epipoline_6.transpose() * epipole;
 	// cout << "if_online6 = \n" << if_online6 << endl;
-	// MatrixXd if_online7 = epipoline_7.transpose() * epipole;
+	// Eigen::MatrixXd if_online7 = epipoline_7.transpose() * epipole;
 	// cout << "if_online7 = \n" << if_online7 << endl;
-	// MatrixXd if_online8 = epipoline_8.transpose() * epipole;
-	// cout << "if_online8 = \n" << if_online8 << endl;*/
+	// Eigen::MatrixXd if_online8 = epipoline_8.transpose() * epipole;
+	// cout << "if_online8 = \n" << if_online8 << endl;
 
 
 
-	// MatrixXd epipoline_p1(3, 1); // pp1 -> epipoline_p1 (on img1)
-	// epipoline_p1 = Fundamental_matrix.transpose() * pp1;
-	// /*cout << "epipoline_p1 = \n" << epipoline_p1 << endl;
+	Eigen::MatrixXd epipoline_p1(3, 1); // pp1 -> epipoline_p1 (on img1)
+	epipoline_p1 = Fundamental_matrix.transpose() * pp1;
+	// cout << "epipoline_p1 = \n" << epipoline_p1 << endl;
 	// MatrixXd check_p1 = epipoline_p1.transpose() * p1;
-	// cout << "check_p1 = \n" << check_p1 << endl;*/
+	// cout << "check_p1 = \n" << check_p1 << endl;
 
-	// MatrixXd epipoline_p2(3, 1); // pp2 -> epipoline_p2 (on img1)
-	// epipoline_p2 = Fundamental_matrix.transpose() * pp2;
-	// /*cout << "epipoline_p2 = \n" << epipoline_p2 << endl;
+	Eigen::MatrixXd epipoline_p2(3, 1); // pp2 -> epipoline_p2 (on img1)
+	epipoline_p2 = Fundamental_matrix.transpose() * pp2;
+	// cout << "epipoline_p2 = \n" << epipoline_p2 << endl;
 	// MatrixXd check_p2 = epipoline_p2.transpose() * p2;
-	// cout << "check_p2 = \n" << check_p2 << endl;*/
+	// cout << "check_p2 = \n" << check_p2 << endl;
 
-	// MatrixXd epipoline_p3(3, 1); // pp3 -> epipoline_p3 (on img1)
-	// epipoline_p3 = Fundamental_matrix.transpose() * pp3;
-	// /*cout << "epipoline_p3 = \n" << epipoline_p3 << endl;
+	Eigen::MatrixXd epipoline_p3(3, 1); // pp3 -> epipoline_p3 (on img1)
+	epipoline_p3 = Fundamental_matrix.transpose() * pp3;
+	// cout << "epipoline_p3 = \n" << epipoline_p3 << endl;
 	// MatrixXd check_p3 = epipoline_p3.transpose() * p3;
-	// cout << "check_p3 = \n" << check_p3 << endl;*/
+	// cout << "check_p3 = \n" << check_p3 << endl;
 
-	// MatrixXd epipoline_p4(3, 1); // pp4 -> epipoline_p4 (on img1)
-	// epipoline_p4 = Fundamental_matrix.transpose() * pp4;
-	// /*cout << "epipoline_p4 = \n" << epipoline_p4 << endl;
+	Eigen::MatrixXd epipoline_p4(3, 1); // pp4 -> epipoline_p4 (on img1)
+	epipoline_p4 = Fundamental_matrix.transpose() * pp4;
+	// cout << "epipoline_p4 = \n" << epipoline_p4 << endl;
 	// MatrixXd check_p4 = epipoline_p4.transpose() * p4;
-	// cout << "check_p4 = \n" << check_p4 << endl;*/
+	// cout << "check_p4 = \n" << check_p4 << endl;
 
-	// MatrixXd epipoline_p5(3, 1); // pp5 -> epipoline_p5 (on img1)
-	// epipoline_p5 = Fundamental_matrix.transpose() * pp5;
-	// /*cout << "epipoline_p5 = \n" << epipoline_p5 << endl;
+	Eigen::MatrixXd epipoline_p5(3, 1); // pp5 -> epipoline_p5 (on img1)
+	epipoline_p5 = Fundamental_matrix.transpose() * pp5;
+	// cout << "epipoline_p5 = \n" << epipoline_p5 << endl;
 	// MatrixXd check_p5 = epipoline_p5.transpose() * p5;
-	// cout << "check_p5 = \n" << check_p5 << endl;*/
+	// cout << "check_p5 = \n" << check_p5 << endl;
 
-	// MatrixXd epipoline_p6(3, 1); // pp6 -> epipoline_p6 (on img1)
-	// epipoline_p6 = Fundamental_matrix.transpose() * pp6;
-	// /*cout << "epipoline_p6 = \n" << epipoline_p6 << endl;
+	Eigen::MatrixXd epipoline_p6(3, 1); // pp6 -> epipoline_p6 (on img1)
+	epipoline_p6 = Fundamental_matrix.transpose() * pp6;
+	// cout << "epipoline_p6 = \n" << epipoline_p6 << endl;
 	// MatrixXd check_p6 = epipoline_p6.transpose() * p6;
-	// cout << "check_p6 = \n" << check_p6 << endl;*/
+	// cout << "check_p6 = \n" << check_p6 << endl;
 
-	// MatrixXd epipoline_p7(3, 1); // pp7 -> epipoline_p7 (on img1)
-	// epipoline_p7 = Fundamental_matrix.transpose() * pp7;
-	// /*cout << "epipoline_p7 = \n" << epipoline_p7 << endl;
+	Eigen::MatrixXd epipoline_p7(3, 1); // pp7 -> epipoline_p7 (on img1)
+	epipoline_p7 = Fundamental_matrix.transpose() * pp7;
+	// cout << "epipoline_p7 = \n" << epipoline_p7 << endl;
 	// MatrixXd check_p7 = epipoline_p7.transpose() * p7;
-	// cout << "check_p7 = \n" << check_p7 << endl;*/
+	// cout << "check_p7 = \n" << check_p7 << endl;
 
-	// MatrixXd epipoline_p8(3, 1); // pp8 -> epipoline_p8 (on img1)
-	// epipoline_p8 = Fundamental_matrix.transpose() * pp8;
-	// /*cout << "epipoline_p8 = \n" << epipoline_p8 << endl;
+	Eigen::MatrixXd epipoline_p8(3, 1); // pp8 -> epipoline_p8 (on img1)
+	epipoline_p8 = Fundamental_matrix.transpose() * pp8;
+	// cout << "epipoline_p8 = \n" << epipoline_p8 << endl;
 	// MatrixXd check_p8 = epipoline_p8.transpose() * p8;
-	// cout << "check_p8 = \n" << check_p8 << endl;*/
+	// cout << "check_p8 = \n" << check_p8 << endl;
 	
-	// MatrixXd epipole_p(3, 1); // the intersection point of epipoline_p1 & epipoline_p2
-	// // doing the cross product
-	// epipole_p(0, 0) = epipoline_p1(1, 0) * epipoline_p2(2, 0) - epipoline_p1(2, 0) * epipoline_p2(1, 0);
-	// epipole_p(1, 0) = epipoline_p1(2, 0) * epipoline_p2(0, 0) - epipoline_p1(0, 0) * epipoline_p2(2, 0);
-	// epipole_p(2, 0) = epipoline_p1(0, 0) * epipoline_p2(1, 0) - epipoline_p1(1, 0) * epipoline_p2(0, 0);
-	// epipole_p = normalized_3x1(epipole_p);
-	// //cout << "after normalized, epipole_p = \n" << epipole_p << endl << endl;
+	Eigen::MatrixXd epipole_p(3, 1); // the intersection point of epipoline_p1 & epipoline_p2
+	// doing the cross product
+	epipole_p(0, 0) = epipoline_p1(1, 0) * epipoline_p2(2, 0) - epipoline_p1(2, 0) * epipoline_p2(1, 0);
+	epipole_p(1, 0) = epipoline_p1(2, 0) * epipoline_p2(0, 0) - epipoline_p1(0, 0) * epipoline_p2(2, 0);
+	epipole_p(2, 0) = epipoline_p1(0, 0) * epipoline_p2(1, 0) - epipoline_p1(1, 0) * epipoline_p2(0, 0);
+	epipole_p = normalized_3x1(epipole_p);
+	//cout << "after normalized, epipole_p = \n" << epipole_p << endl << endl;
 
 
 	// //////// ************************ translate the image center ************************
