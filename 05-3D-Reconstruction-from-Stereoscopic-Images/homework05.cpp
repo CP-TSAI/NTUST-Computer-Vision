@@ -127,10 +127,6 @@ int main()
 	{
 		string L_whole_name = get_file_path(L_imageName, imgName);
 		string R_whole_name = get_file_path(R_imageName, imgName);
-		
-		// std::cout << "L_whole_name: " << L_whole_name << std::endl;
-		// std::cout << "R_whole_name: " << R_whole_name << std::endl;
-
 		cv::Mat img_L = cv::imread(L_whole_name, CV_LOAD_IMAGE_COLOR);
 		cv::Mat img_R = cv::imread(R_whole_name, CV_LOAD_IMAGE_COLOR);
 		if (!img_L.data || !img_R.data) // Check for invalid input
