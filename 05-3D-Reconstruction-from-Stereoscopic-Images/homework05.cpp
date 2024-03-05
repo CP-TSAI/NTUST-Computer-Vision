@@ -74,6 +74,24 @@ void get_camera_parameters(
 		-0.000689813339, 0.010646819054, 1.000000000000;
 }
 
+std::string get_file_path(std::string dir, int img_num)
+{
+	std::string res = "";
+	if (img_num >= 0 && img_num <= 9)
+	{
+		res = dir + "000" + to_string(img_num) + ".jpg"; // ex: "../L/0001.jpg"
+	}
+	else if (img_num >= 10 && img_num <= 99)
+	{
+		res = dir + "00" + to_string(img_num) + ".jpg"; // ex: "../L/0011"
+	}
+	else // img_num >= 100 || img_num <= 363
+	{
+		res = dir + "0" + to_string(img_num) + ".jpg"; // ex: "../L/0111"
+	}
+	return res;
+}
+
 vector<point_2D> L_point;
 vector<point_2D> R_point;
 vector<point_3D> space_point_3D;
@@ -107,25 +125,11 @@ int main()
 	
 	for (int imgName = 0; imgName <= 363; imgName++)
 	{
-		string L_whole_name = "";
-		string R_whole_name = "";
-		if (imgName >= 0 && imgName <= 9)
-		{
-			L_whole_name = L_imageName + "000" + to_string(imgName) + ".jpg"; // ex: "../L/0001.jpg"
-			R_whole_name = R_imageName + "000" + to_string(imgName) + ".jpg"; // ex: "../R/0001.jpg"
-		}
-		else if (imgName >= 10 && imgName <= 99)
-		{
-			L_whole_name = L_imageName + "00" + to_string(imgName) + ".jpg"; // ex: "../L/0011"
-			R_whole_name = R_imageName + "00" + to_string(imgName) + ".jpg"; // ex: "../R/0011"
-		}
-		else // imgName >= 100 || imgName <= 363
-		{
-			L_whole_name = L_imageName + "0" + to_string(imgName) + ".jpg"; // ex: "../L/0111"
-			R_whole_name = R_imageName + "0" + to_string(imgName) + ".jpg"; // ex: "../R/0111"
-		}
-		std::cout << "L_whole_name: " << L_whole_name << std::endl;
-		std::cout << "R_whole_name: " << R_whole_name << std::endl;
+		string L_whole_name = get_file_path(L_imageName, imgName);
+		string R_whole_name = get_file_path(R_imageName, imgName);
+		
+		// std::cout << "L_whole_name: " << L_whole_name << std::endl;
+		// std::cout << "R_whole_name: " << R_whole_name << std::endl;
 
 		cv::Mat img_L = cv::imread(L_whole_name, CV_LOAD_IMAGE_COLOR);
 		cv::Mat img_R = cv::imread(R_whole_name, CV_LOAD_IMAGE_COLOR);
