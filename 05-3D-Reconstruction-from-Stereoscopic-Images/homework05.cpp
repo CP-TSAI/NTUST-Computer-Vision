@@ -92,9 +92,6 @@ int main()
 
 	// ---------------------------------------------------------------------------
 
-	ofstream myfile_xyz;
-	myfile_xyz.open("xyz_file.xyz");
-
 	// read image file
 	string L_imageName = "../L/";
 	string R_imageName = "../R/";
@@ -223,6 +220,10 @@ int main()
 
 	ofstream xyz_file;
 	xyz_file.open("xyz_file.txt");
+
+	ofstream myfile_xyz;
+	myfile_xyz.open("xyz_file.xyz");
+
 	//int idx = 0;
 	for (unsigned i = 0; i < L_point.size(); i++)
 	{
