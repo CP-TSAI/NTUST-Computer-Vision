@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ctsai/Chinpo/personal_repos-(already-back-up-to-gt-github)/NTUST-Computer-Vision/Shape from Silhouette/homework01.cpp
+vector
+-
+fstream
+-
+string
+-
+sstream
+-
+cctype
+-
+opencv2/opencv.hpp
+/home/ctsai/Chinpo/personal_repos-(already-back-up-to-gt-github)/NTUST-Computer-Vision/Shape from Silhouette/opencv2/opencv.hpp
+
