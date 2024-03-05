@@ -1,31 +1,13 @@
-// homework01.cpp : Defines the entry point for the console application.
-//
-
-// #include "stdafx.h"
 #include <stdlib.h>
 #include <stdio.h>
-// #include <windows.h> 
-// #include "opencv/opencv2/opencv.hpp"
 #include <vector>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <cctype>
-// #include <conio.h> 
-// #include <Eigen/Dense>  
+#include <cctype>  
 #include <Eigen/Core>
 #include <Eigen/Dense>
 
-// #ifdef ___WIN_X64_LIB___
-// #pragma comment(lib, "../../lib/x64/opencv_world320.lib")
-// #endif
-
-// #ifdef ___WIN_X86_LIB___
-// #pragma comment(lib, "../../lib/x86/opencv_world320.lib")
-// #endif
-
-// using namespace cv;
-// using namespace Eigen;
 using namespace std;
 
 // void normalized_3x1(MatrixXd& mat)
