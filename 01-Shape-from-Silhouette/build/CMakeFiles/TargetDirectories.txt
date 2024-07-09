@@ -1,3 +1,0 @@
-/home/ctsai/Chinpo/personal_repos-(already-back-up-to-gt-github)/NTUST-Computer-Vision/Shape from Silhouette/build/CMakeFiles/edit_cache.dir
-/home/ctsai/Chinpo/personal_repos-(already-back-up-to-gt-github)/NTUST-Computer-Vision/Shape from Silhouette/build/CMakeFiles/rebuild_cache.dir
-/home/ctsai/Chinpo/personal_repos-(already-back-up-to-gt-github)/NTUST-Computer-Vision/Shape from Silhouette/build/CMakeFiles/homework01.dir
