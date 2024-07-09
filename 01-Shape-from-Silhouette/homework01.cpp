@@ -198,14 +198,14 @@ int main()
 
 
 	// read images
-	cv::Mat myBMP_001 = cv::imread("../imgs/" + object_name + "/001.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_002 = cv::imread("../imgs/" + object_name + "/002.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_003 = cv::imread("../imgs/" + object_name + "/003.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_004 = cv::imread("../imgs/" + object_name + "/004.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_005 = cv::imread("../imgs/" + object_name + "/005.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_006 = cv::imread("../imgs/" + object_name + "/006.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_007 = cv::imread("../imgs/" + object_name + "/007.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat myBMP_008 = cv::imread("../imgs/" + object_name + "/008.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat myBMP_001 = cv::imread("../imgs/" + object_name + "/001.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_002 = cv::imread("../imgs/" + object_name + "/002.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_003 = cv::imread("../imgs/" + object_name + "/003.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_004 = cv::imread("../imgs/" + object_name + "/004.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_005 = cv::imread("../imgs/" + object_name + "/005.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_006 = cv::imread("../imgs/" + object_name + "/006.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_007 = cv::imread("../imgs/" + object_name + "/007.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat myBMP_008 = cv::imread("../imgs/" + object_name + "/008.bmp", cv::IMREAD_GRAYSCALE);
 	if (!myBMP_001.data || !myBMP_002.data || !myBMP_003.data || !myBMP_004.data || 
 	    !myBMP_005.data || !myBMP_006.data || !myBMP_007.data || !myBMP_008.data)
 	{
