@@ -39,33 +39,11 @@ Eigen::MatrixXd normalized_3x1(Eigen::MatrixXd& mat)
 	return mat;
 }
 
-Eigen::Matrix3d get_fundamental_matrix()
+Eigen::Matrix3d get_fundamental_matrix(
+	Eigen::MatrixXd p1, Eigen::MatrixXd p2, Eigen::MatrixXd p3, Eigen::MatrixXd p4, Eigen::MatrixXd p5, Eigen::MatrixXd p6, Eigen::MatrixXd p7, Eigen::MatrixXd p8,
+	Eigen::MatrixXd pp1, Eigen::MatrixXd pp2, Eigen::MatrixXd pp3, Eigen::MatrixXd pp4, Eigen::MatrixXd pp5, Eigen::MatrixXd pp6, Eigen::MatrixXd pp7, Eigen::MatrixXd pp8)
 {
 	/******************* Calculate the Fundamental Matrix *******************/
-	// point on 001.jpg
-	Eigen::MatrixXd p1(3, 1);	p1 << 570, 917, 1;
-	Eigen::MatrixXd p2(3, 1);	p2 << 594, 727, 1;
-	Eigen::MatrixXd p3(3, 1);	p3 << 781, 776, 1;
-	Eigen::MatrixXd p4(3, 1);	p4 << 1490, 846, 1;
-	Eigen::MatrixXd p5(3, 1);	p5 << 1492, 848, 1;
-	Eigen::MatrixXd p6(3, 1);	p6 << 1521, 581, 1;
-	Eigen::MatrixXd p7(3, 1);	p7 << 1730, 474, 1;
-	Eigen::MatrixXd p8(3, 1);	p8 << 2377, 1041, 1;
-	Eigen::MatrixXd p9(3, 1);	p9 << 686, 858, 1;
-	Eigen::MatrixXd p10(3, 1);	p10 << 651, 750, 1;
-
-	// point on 002.jpg
-	Eigen::MatrixXd pp1(3, 1);	pp1 << 792, 996, 1;
-	Eigen::MatrixXd pp2(3, 1);	pp2 << 872, 818, 1;
-	Eigen::MatrixXd pp3(3, 1);	pp3 << 1426, 829, 1;
-	Eigen::MatrixXd pp4(3, 1);	pp4 << 1503, 878, 1;
-	Eigen::MatrixXd pp5(3, 1);	pp5 << 681, 907, 1;
-	Eigen::MatrixXd pp6(3, 1);	pp6 << 2175, 550, 1;
-	Eigen::MatrixXd pp7(3, 1);	pp7 << 1797, 452, 1;
-	Eigen::MatrixXd pp8(3, 1);	pp8 << 1846, 987, 1;
-	Eigen::MatrixXd pp9(3, 1);	pp9 << 1347, 910, 1;
-	Eigen::MatrixXd pp10(3, 1);pp10 << 939, 833, 1;
-
 
 	Eigen::MatrixXd A(8, 8);
 	A <<
@@ -90,8 +68,21 @@ Eigen::Matrix3d get_fundamental_matrix()
 		F(0, 0), F(1, 0), F(2, 0),
 		F(3, 0), F(4, 0), F(5, 0),
 		F(6, 0), F(7, 0),		1;
+
+
+	// using SVD to make the rank of Fundamental_matrix to be 2
+	Eigen::JacobiSVD<Eigen::MatrixXd> svd(Fundamental_matrix, Eigen::ComputeFullV | Eigen::ComputeFullU);
+	Eigen::MatrixXd U = svd.matrixU();
+	Eigen::MatrixXd S = svd.singularValues().asDiagonal();
+	Eigen::MatrixXd V_T = svd.matrixV().transpose();
+	S(2, 2) = 0; // enforcing singularity
+
+	// the final answer of FUNDAMENTAL MATRIX
+	Eigen::MatrixXd Fundamental_Matrix_SVD = U * S * V_T;
+
+	std::cout << "Fundamental_Matrix_SVD ... = \n" << Fundamental_Matrix_SVD << std::endl;
 	
-	return Fundamental_matrix;
+	return Fundamental_Matrix_SVD;
 }
 
 
@@ -107,21 +98,34 @@ int main()
 		return -1;
 	}
 
+	// point on 001.jpg
+	Eigen::MatrixXd p1(3, 1);	p1 << 570, 917, 1;
+	Eigen::MatrixXd p2(3, 1);	p2 << 594, 727, 1;
+	Eigen::MatrixXd p3(3, 1);	p3 << 781, 776, 1;
+	Eigen::MatrixXd p4(3, 1);	p4 << 1490, 846, 1;
+	Eigen::MatrixXd p5(3, 1);	p5 << 1492, 848, 1;
+	Eigen::MatrixXd p6(3, 1);	p6 << 1521, 581, 1;
+	Eigen::MatrixXd p7(3, 1);	p7 << 1730, 474, 1;
+	Eigen::MatrixXd p8(3, 1);	p8 << 2377, 1041, 1;
+	Eigen::MatrixXd p9(3, 1);	p9 << 686, 858, 1;
+	Eigen::MatrixXd p10(3, 1);	p10 << 651, 750, 1;
 
-	Eigen::Matrix3d Fundamental_matrix = get_fundamental_matrix();
+	// point on 002.jpg
+	Eigen::MatrixXd pp1(3, 1);	pp1 << 792, 996, 1;
+	Eigen::MatrixXd pp2(3, 1);	pp2 << 872, 818, 1;
+	Eigen::MatrixXd pp3(3, 1);	pp3 << 1426, 829, 1;
+	Eigen::MatrixXd pp4(3, 1);	pp4 << 1503, 878, 1;
+	Eigen::MatrixXd pp5(3, 1);	pp5 << 681, 907, 1;
+	Eigen::MatrixXd pp6(3, 1);	pp6 << 2175, 550, 1;
+	Eigen::MatrixXd pp7(3, 1);	pp7 << 1797, 452, 1;
+	Eigen::MatrixXd pp8(3, 1);	pp8 << 1846, 987, 1;
+	Eigen::MatrixXd pp9(3, 1);	pp9 << 1347, 910, 1;
+	Eigen::MatrixXd pp10(3, 1); pp10 << 939, 833, 1;
+
+
+	Eigen::Matrix3d Fundamental_matrix = get_fundamental_matrix(p1, p2, p3, p4, p5, p6, p7, p8,
+																pp1, pp2, pp3, pp4, pp5, pp6, pp7, pp8);
 	std::cout << "Fundamental matrix ... = \n" << Fundamental_matrix << std::endl;
-
-	// using SVD to make the rank of Fundamental_matrix to be 2
-	Eigen::JacobiSVD<Eigen::MatrixXd> svd(Fundamental_matrix, Eigen::ComputeFullV | Eigen::ComputeFullU);
-	Eigen::MatrixXd U = svd.matrixU();
-	Eigen::MatrixXd S = svd.singularValues().asDiagonal();
-	Eigen::MatrixXd V_T = svd.matrixV().transpose();
-	S(2, 2) = 0; // enforcing singularity
-
-	// the final answer of FUNDAMENTAL MATRIX
-	Eigen::MatrixXd Fundamental_Matrix_SVD = U * S * V_T;
-
-	std::cout << "Fundamental_Matrix_SVD ... = \n" << Fundamental_Matrix_SVD << std::endl;
 
 	// /**************** calculate the epipoline & epipole ****************/
 
