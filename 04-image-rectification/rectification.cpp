@@ -39,19 +39,8 @@ Eigen::MatrixXd normalized_3x1(Eigen::MatrixXd& mat)
 	return mat;
 }
 
-
-int main()
+Eigen::Matrix3d get_fundamental_matrix()
 {
-	auto start_time = std::chrono::high_resolution_clock::now();
-
-	/************************ read image  /************************/
-	cv::Mat myJPG_001 = cv::imread("../DSC_1365.JPG");  // Read the 001 file
-	cv::Mat myJPG_002 = cv::imread("../DSC_1370.JPG");  // Read the 002 file
-	if (!myJPG_001.data || !myJPG_002.data){
-		cout << "COULD NOT OPEN or find the image" << std::endl;
-		return -1;
-	}
-
 	/******************* Calculate the Fundamental Matrix *******************/
 	// point on 001.jpg
 	Eigen::MatrixXd p1(3, 1);	p1 << 570, 917, 1;
@@ -101,6 +90,25 @@ int main()
 		F(0, 0), F(1, 0), F(2, 0),
 		F(3, 0), F(4, 0), F(5, 0),
 		F(6, 0), F(7, 0),		1;
+	
+	return Fundamental_matrix;
+}
+
+
+int main()
+{
+	auto start_time = std::chrono::high_resolution_clock::now();
+
+	/************************ read image  ************************/
+	cv::Mat myJPG_001 = cv::imread("../DSC_1365.JPG");  // Read the 001 file
+	cv::Mat myJPG_002 = cv::imread("../DSC_1370.JPG");  // Read the 002 file
+	if (!myJPG_001.data || !myJPG_002.data){
+		cout << "COULD NOT OPEN or find the image" << std::endl;
+		return -1;
+	}
+
+
+	Eigen::Matrix3d Fundamental_matrix = get_fundamental_matrix();
 	std::cout << "Fundamental matrix ... = \n" << Fundamental_matrix << std::endl;
 
 	// using SVD to make the rank of Fundamental_matrix to be 2
