@@ -84,6 +84,7 @@ int main()
 	//MatrixXd U = svd.matrixU();
 	//MatrixXd S = svd.singularValues().asDiagonal();
 	Eigen::MatrixXd V_A = svd_A.matrixV();
+	// std::cout << "V_A" << endl << V_A << endl;
 
 	Eigen::JacobiSVD<Eigen::MatrixXd> svd_B(B_unit_to_square, Eigen::ComputeFullV | Eigen::ComputeFullU);
 	Eigen::MatrixXd V_B = svd_B.matrixV();
@@ -122,6 +123,7 @@ int main()
 
 
 	// Get the column vector from the homography matrix
+	// H_A = [H_A_1, H_A_2, H_A_3]
 	Eigen::MatrixXd H_A_1(3, 1);
 	H_A_1 << H_A(0, 0), H_A(1, 0), H_A(2, 0);
 	Eigen::MatrixXd H_A_2(3, 1);
@@ -221,11 +223,14 @@ int main()
 	Eigen::Vector3d rc_2(rc(0, 1) / length_c, rc(1, 1) / length_c, rc(2, 1) / length_c);
 	Eigen::Vector3d rc_3 = rc_1.cross(rc_2);
 	rc_3.normalized();
+	
+	// Recompute the second vector to ensure orthogonality
 	rc_2 = rc_3.cross(rc_1);
 	
 	//MatrixXd t_a(3, 1);
 	//t_a = K.inverse() * H_A_3 / length_a;
 
+	// Compute the translation component 't_c'
 	Eigen::MatrixXd t_c(3, 1);
 	t_c = K.inverse() * H_C_3 / length_c;
 
