@@ -376,67 +376,6 @@ int main()
 	temp2(2, 0) = pp1(0, 0) + pp2(0, 0) + pp3(0, 0) + pp4(0, 0) + pp5(0, 0) + pp6(0, 0) + pp7(0, 0) + pp8(0, 0);
 
 
-	// version 2
-	/*MatrixXd v1(3, 1);
-	v1 << 738, 123, 1;
-	MatrixXd vv1(3, 1);
-	vv1 << 328, 49, 1;
-
-	MatrixXd v2(3, 1);
-	v2 << 747, 562, 1;
-	MatrixXd vv2(3, 1);
-	vv2 << 529, 688, 1;
-
-	MatrixXd v3(3, 1);
-	v3 << 295, 201, 1;
-	MatrixXd vv3(3, 1);
-	vv3 << 291, 150, 1;
-
-	MatrixXd v4(3, 1);
-	v4 << 431, 666, 1;
-	MatrixXd vv4(3, 1);
-	vv4 << 510, 589, 1;
-
-	MatrixXd v5(3, 1);
-	v5 << 782, 165, 1;
-	MatrixXd vv5(3, 1);
-	vv5 << 397, 84, 1;
-
-	MatrixXd v6(3, 1);
-	v6 << 331, 251, 1;
-	MatrixXd vv6(3, 1);
-	vv6 << 316, 201, 1;
-
-	MatrixXd v7(3, 1);
-	v7 << 333, 295, 1;
-	MatrixXd vv7(3, 1);
-	vv7 << 329, 242, 1;
-
-	MatrixXd v8(3, 1);
-	v8 << 725, 218, 1;
-	MatrixXd vv8(3, 1);
-	vv8 << 336, 155, 1;
-
-	temp1(0, 0) = v1(0, 0) * v1(0, 0) + v2(0, 0) * v2(0, 0) + v3(0, 0) * v3(0, 0) + v4(0, 0) * v4(0, 0) +
-				  v5(0, 0) * v5(0, 0) + v6(0, 0) * v6(0, 0) + v7(0, 0) * v7(0, 0) + v8(0, 0) * v8(0, 0);
-	temp1(0, 1) = v1(0, 0) * v1(1, 0) + v2(0, 0) * v2(1, 0) + v3(0, 0) * v3(1, 0) + v4(0, 0) * v4(1, 0) +
-				  v5(0, 0) * v5(1, 0) + v6(0, 0) * v6(1, 0) + v7(0, 0) * v7(1, 0) + v8(0, 0) * v8(1, 0);
-	temp1(0, 2) = v1(0, 0) + v2(0, 0) + v3(0, 0) + v4(0, 0) + v5(0, 0) + v6(0, 0) + v7(0, 0) + v8(0, 0);
-	temp1(1, 0) = temp1(0, 1);
-	temp1(1, 1) = v1(1, 0) * v1(1, 0) + v2(1, 0) * v2(1, 0) + v3(1, 0) * v3(1, 0) + v4(1, 0) * v4(1, 0) +
-				  v5(1, 0) * v5(1, 0) + v6(1, 0) * v6(1, 0) + v7(1, 0) * v7(1, 0) + v8(1, 0) * v8(1, 0);
-	temp1(1, 2) = v1(1, 0) + v2(1, 0) + v3(1, 0) + v4(1, 0) + v5(1, 0) + v6(1, 0) + v7(1, 0) + v8(1, 0);
-	temp1(2, 0) = temp1(0, 2);
-	temp1(2, 1) = temp1(1, 2);
-	temp1(2, 2) = 8;
-
-	temp2(0, 0) = v1(0, 0) * vv1(0, 0) + v2(0, 0) * vv2(0, 0) + v3(0, 0) * vv3(0, 0) + v4(0, 0) * vv4(0, 0) +
-				  v5(0, 0) * vv5(0, 0) + v6(0, 0) * vv6(0, 0) + v7(0, 0) * vv7(0, 0) + v8(0, 0) * vv8(0, 0);
-	temp2(1, 0) = v1(1, 0) * vv1(0, 0) + v2(1, 0) * vv2(0, 0) + v3(1, 0) * vv3(0, 0) + v4(1, 0) * vv4(0, 0) +
-				  v5(1, 0) * vv5(0, 0) + v6(1, 0) * vv6(0, 0) + v7(1, 0) * vv7(0, 0) + v8(1, 0) * vv8(0, 0);
-	temp2(2, 0) = vv1(0, 0) + vv2(0, 0) + vv3(0, 0) + vv4(0, 0) + vv5(0, 0) + vv6(0, 0) + vv7(0, 0) + vv8(0, 0);*/
-
-
 	abc_minimize = temp1.inverse() * temp2;
 
 	/*cout << "abc_minimize = \n" << abc_minimize << endl;*/
@@ -453,7 +392,7 @@ int main()
 	int offsetx_back = 1496;
 	int offsety_back = 1000;
 	cv::Mat trans_mat_back = (cv::Mat_<double>(2, 3) << 1, 0, offsetx_back, 
-												0, 1, offsety_back);
+												        0, 1, offsety_back);
 
 	//warpAffine(myJPG_001, myJPG_001, trans_mat_back, myJPG_001.size());
 	//warpAffine(myJPG_002, myJPG_002, trans_mat_back, myJPG_002.size());
@@ -523,15 +462,6 @@ int main()
 		}
 	}
 
-	// ****************** print the rectify image *******************
-
-	//const int kNewWidth = 900;
-	//const int kNewHeight = 600;
-	//
-	//cv::Mat resize_myJPG_001;
-	//resize(myJPG_001_rectified, resize_myJPG_001, cvSize(kNewWidth, kNewHeight));
-	//imshow("resize result1", resize_myJPG_001);
-	//waitKey(0);
 
 	imwrite("result_image1.jpg", myJPG_001_rectified);
 	imwrite("result_image2.jpg", myJPG_002_rectified);
